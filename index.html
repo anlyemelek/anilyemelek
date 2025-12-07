@@ -2,8 +2,9 @@
 <html lang="tr">
   <head>
     <meta charset="utf-8" />
-    <!-- Masaüstü düzenini her cihazda korumak için genişliği kilitliyoruz -->
-    <meta name="viewport" content="width=1200, initial-scale=1" />
+    <!-- Artık responsive: genişlik cihaz genişliği kadar -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Anıl Yemelek | Director of Photography</title>
     <meta
       name="description"
@@ -12,8 +13,8 @@
 
     <style>
       :root {
-        --bg: #0a0a0a; /* near-black */
-        --fg: #e6e6e6; /* light gray text */
+        --bg: #0a0a0a;
+        --fg: #e6e6e6;
         --muted: #9b9b9b;
         --brand: #5ce65c;
         --card: #121212;
@@ -32,8 +33,8 @@
 
       body {
         margin: 0;
-        font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
-          Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+        font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, "Apple Color Emoji", "Segoe UI Emoji";
         background: var(--bg);
         color: var(--fg);
       }
@@ -64,37 +65,40 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 14px 0;
+        padding: 10px 0;
+        gap: 10px;
       }
 
       .brand {
         display: flex;
         align-items: baseline;
-        gap: 14px;
+        gap: 8px;
         font-weight: 700;
         letter-spacing: 0.5px;
+        flex-wrap: wrap;
       }
 
       .brand .name {
         color: var(--brand);
-        font-size: 22px;
+        font-size: 18px;
       }
 
       .brand .tag {
         color: var(--muted);
         font-weight: 500;
-        font-size: 13px;
+        font-size: 12px;
       }
 
       nav {
         display: flex;
         align-items: center;
-        gap: 18px;
+        gap: 12px;
         flex-wrap: wrap;
       }
 
       .navlink {
         opacity: 0.9;
+        font-size: 14px;
       }
 
       .navlink:hover {
@@ -117,10 +121,20 @@
         opacity: 1;
       }
 
+      /* Daha geniş ekranlarda yazıları büyütelim */
+      @media (min-width: 768px) {
+        .brand .name {
+          font-size: 22px;
+        }
+        .brand .tag {
+          font-size: 13px;
+        }
+      }
+
       /* ===== Main / Pages ===== */
 
       main {
-        padding: 26px 0 60px;
+        padding: 20px 0 60px;
       }
 
       /* ===== Filter bar ===== */
@@ -129,11 +143,19 @@
         display: flex;
         gap: 10px;
         align-items: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         margin: 4px 0 18px 0;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .filters::-webkit-scrollbar {
+        display: none;
       }
 
       .filter-btn {
+        white-space: nowrap;
         padding: 8px 14px;
         border: 1px solid #262626;
         background: #141414;
@@ -217,14 +239,14 @@
         opacity: 0.9;
       }
 
-      /* Tablet */
+      /* Tablet: 2 kart / satır */
       @media (min-width: 640px) {
         .card {
           grid-column: span 6;
         }
       }
 
-      /* Desktop */
+      /* Desktop: 3 kart / satır */
       @media (min-width: 1024px) {
         .card {
           grid-column: span 4;
@@ -393,15 +415,6 @@
         padding: 26px 0;
         border-top: 1px solid #1f1f1f;
       }
-
-      /* Sabit 3 sütun görünümü için (12 / 4) */
-      .grid {
-        grid-template-columns: repeat(12, 1fr);
-      }
-
-      .card {
-        grid-column: span 4 !important;
-      }
     </style>
   </head>
 
@@ -416,7 +429,6 @@
 
         <nav>
           <a class="navlink" href="#/contact">contact</a>
-          <!-- 
           <a
             class="icon"
             aria-label="Instagram"
@@ -432,7 +444,6 @@
               height="20"
               aria-hidden="true"
             >
-            -->
               <path
                 d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM18 6.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
               />
@@ -460,137 +471,118 @@
 
     <footer style="font-size: 12px; letter-spacing: 0.2px; opacity: 0.8">
       <div class="wrap">
-        © <span id="year"></span> Anıl Yemelek • All rights reserved • No part of
-        this site may be reproduced without permission.
+        © <span id="year"></span> Anıl Yemelek • All rights reserved • No part
+        of this site may be reproduced without permission.
       </div>
     </footer>
 
     <script>
-      // === Küçük yardımcılar ===
       const $ = (sel, el = document) => el.querySelector(sel);
       const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
-      const app = $('#app');
+      const app = $("#app");
 
-      $('#year').textContent = new Date().getFullYear();
+      $("#year").textContent = new Date().getFullYear();
 
-      const isEmbedPlatform = (src = '') =>
+      const isEmbedPlatform = (src = "") =>
         /player\.vimeo\.com|youtube\.com|youtu\.be/i.test(src);
 
-      const normalizeVideoSrc = (src = '') => {
-        // Vimeo normal (vimeo.com/...) linklerini embed adresine çevir
+      const normalizeVideoSrc = (src = "") => {
         if (/^https?:\/\/vimeo\.com\//i.test(src)) {
-          const id = src.trim().split('/').pop();
+          const id = src.trim().split("/").pop();
           return `https://player.vimeo.com/video/${id}`;
         }
         return src;
       };
 
-      const vimeoThumbFromSrc = (src = '') => {
+      const vimeoThumbFromSrc = (src = "") => {
         const m = src.match(/(?:video\/|vimeo\.com\/)\s*(\d+)/i);
-        return m ? `https://vumbnail.com/${m[1]}.jpg` : '';
+        return m ? `https://vumbnail.com/${m[1]}.jpg` : "";
       };
 
-      // === Proje verisi ===
       const projects = [
         {
-          slug: 'cmf1',
-          title: 'CMF Phone 1',
-          subtitle: 'Commercial',
-          cover: 'assets/projects/cmf1/cmf1.avif',
-          description: 'CMF Phone 1 by Nothing',
+          slug: "cmf1",
+          title: "CMF Phone 1",
+          subtitle: "Commercial",
+          cover: "assets/projects/cmf1/cmf1.avif",
+          description: "CMF Phone 1 by Nothing",
           media: [
-            { type: 'video', src: 'https://player.vimeo.com/video/1089788027' },
-            // { type: 'image', src: 'assets/projects/disposables/still-01.jpg' },
-            // { type: 'image', src: 'assets/projects/disposables/still-02.jpg' },
-            // { type: 'image', src: 'assets/projects/disposables/still-03.jpg' }
+            { type: "video", src: "https://player.vimeo.com/video/1089788027" }
           ]
         },
         {
-          slug: '44iff',
-          title: '44. İstanbul Film Festivali',
-          subtitle: 'Commercial',
-          cover: 'assets/projects/44iff/44iff.avif',
-          description: '44. İstanbul Film Festivali',
+          slug: "44iff",
+          title: "44. İstanbul Film Festivali",
+          subtitle: "Commercial",
+          cover: "assets/projects/44iff/44iff.avif",
+          description: "44. İstanbul Film Festivali",
           media: [
-            { type: 'video', src: 'https://player.vimeo.com/video/1087643931' },
-            // { type: 'image', src: 'assets/projects/1300rockstar/still-02.jpg' },
-            // { type: 'image', src: 'assets/projects/1300rockstar/still-03.jpg' }
+            { type: "video", src: "https://player.vimeo.com/video/1087643931" }
           ]
         },
         {
-          slug: 'madrigalsenyoksun',
-          title: 'Madrigal - Sen ya da hiç',
-          subtitle: 'Music Video',
-          cover: 'assets/projects/madrigalgoksel/madrigalgoksel.avif',
-          description: 'Madrigal feat Göksel - Ne zamandır sendeyim',
+          slug: "madrigalsenyoksun",
+          title: "Madrigal - Sen ya da hiç",
+          subtitle: "Music Video",
+          cover: "assets/projects/madrigalgoksel/madrigalgoksel.avif",
+          description: "Madrigal feat Göksel - Ne zamandır sendeyim",
           media: [
-            { type: 'video', src: 'https://player.vimeo.com/video/1033811464' },
-            // { type: 'image', src: 'assets/projects/1300rockstar/still-02.jpg' },
-            // { type: 'image', src: 'assets/projects/1300rockstar/still-03.jpg' }
+            { type: "video", src: "https://player.vimeo.com/video/1033811464" }
           ]
         },
         {
-          slug: 'wwf',
-          title: 'WWF - Eye Wear Campaign',
-          subtitle: 'Commercial',
-          cover: 'assets/projects/wwf/wwf.avif',
-          description: 'WWF - Eye Wear Campaign',
+          slug: "wwf",
+          title: "WWF - Eye Wear Campaign",
+          subtitle: "Commercial",
+          cover: "assets/projects/wwf/wwf.avif",
+          description: "WWF - Eye Wear Campaign",
           media: [
-            { type: 'video', src: 'https://player.vimeo.com/video/1035195736' },
-            // { type: 'image', src: 'assets/projects/1300rockstar/still-02.jpg' },
-            // { type: 'image', src: 'assets/projects/1300rockstar/still-03.jpg' }
+            { type: "video", src: "https://player.vimeo.com/video/1035195736" }
           ]
         },
         {
-          slug: 'madrigal',
-          title: 'Madrigal - Sen Yoksun',
-          subtitle: 'Music Video',
-          cover: 'assets/projects/madrigal/madrigal.avif',
-          description: 'Madrigal - Sen Yoksun',
+          slug: "madrigal",
+          title: "Madrigal - Sen Yoksun",
+          subtitle: "Music Video",
+          cover: "assets/projects/madrigal/madrigal.avif",
+          description: "Madrigal - Sen Yoksun",
           media: [
-            { type: 'video', src: 'https://player.vimeo.com/video/1033797724' },
-            // { type: 'image', src: 'assets/projects/1300rockstar/still-02.jpg' },
-            // { type: 'image', src: 'assets/projects/1300rockstar/still-03.jpg' }
+            { type: "video", src: "https://player.vimeo.com/video/1033797724" }
           ]
         }
       ];
 
-      // === Global state ===
       let currentProject = null;
       let currentIndex = 0;
-      let currentFilter = 'All';
+      let currentFilter = "All";
 
       const getCategories = () => {
         const map = new Map();
         projects.forEach((p) => {
-          const lc = (p.subtitle || '').trim().toLowerCase();
+          const lc = (p.subtitle || "").trim().toLowerCase();
           if (lc && !map.has(lc)) map.set(lc, p.subtitle.trim());
         });
-        return ['All', ...Array.from(map.values())];
+        return ["All", ...Array.from(map.values())];
       };
 
-      // === Router (hash-based) ===
       function router() {
-        const hash = location.hash || '#/';
-        const [, route, param] = hash.split('/');
+        const hash = location.hash || "#/";
+        const [, route, param] = hash.split("/");
 
         if (!route) {
           renderHome();
-        } else if (route === 'project' && param) {
+        } else if (route === "project" && param) {
           renderProject(param);
-        } else if (route === 'contact') {
+        } else if (route === "contact") {
           renderContact();
         } else {
           renderNotFound();
         }
       }
 
-      window.addEventListener('hashchange', router);
-      window.addEventListener('DOMContentLoaded', router);
+      window.addEventListener("hashchange", router);
+      window.addEventListener("DOMContentLoaded", router);
 
-      // === Views ===
-
-      // Anasayfa: filtre + grid
       function renderHome() {
         const categories = getCategories();
 
@@ -600,7 +592,7 @@
               .map(
                 (cat) => `
               <button
-                class="filter-btn ${cat === currentFilter ? 'active' : ''}"
+                class="filter-btn ${cat === currentFilter ? "active" : ""}"
                 role="tab"
                 data-cat="${cat}"
               >
@@ -608,14 +600,14 @@
               </button>
             `
               )
-              .join('')}
+              .join("")}
           </div>
         `;
 
         const filtered = projects.filter((p) => {
-          if (currentFilter === 'All') return true;
+          if (currentFilter === "All") return true;
           return (
-            (p.subtitle || '').trim().toLowerCase() ===
+            (p.subtitle || "").trim().toLowerCase() ===
             currentFilter.trim().toLowerCase()
           );
         });
@@ -645,32 +637,30 @@
               </a>
             `
               )
-              .join('')}
+              .join("")}
           </section>
         `;
 
         app.innerHTML = filtersHTML + gridHTML;
 
-        // Filtre butonları
-        $$('.filter-btn', app).forEach((btn) => {
-          btn.addEventListener('click', () => {
-            currentFilter = btn.dataset.cat || 'All';
-            $$('.filter-btn', app).forEach((b) =>
-              b.classList.toggle('active', b === btn)
+        $$(".filter-btn", app).forEach((btn) => {
+          btn.addEventListener("click", () => {
+            currentFilter = btn.dataset.cat || "All";
+            $$(".filter-btn", app).forEach((b) =>
+              b.classList.toggle("active", b === btn)
             );
             renderHome();
             window.scrollTo({
               top:
-                document.querySelector('.filters').getBoundingClientRect().top +
+                document.querySelector(".filters").getBoundingClientRect().top +
                 window.scrollY -
                 12,
-              behavior: 'instant'
+              behavior: "instant"
             });
           });
         });
       }
 
-      // Proje detayı
       function renderProject(slug) {
         const p = projects.find((x) => x.slug === slug);
         if (!p) {
@@ -683,22 +673,8 @@
 
         const thumbsHtml = p.media
           .map((m, i) => {
-            if (m.type === 'image') {
-              return `
-                <button
-                  class="thumb"
-                  data-idx="${i}"
-                  data-type="image"
-                  data-src="${m.src}"
-                  aria-label="Open media ${i + 1}"
-                >
-                  <img loading="lazy" src="${m.src}" alt="thumb ${i + 1}" />
-                </button>
-              `;
-            }
-
             const normSrc = normalizeVideoSrc(m.src);
-            const poster = vimeoThumbFromSrc(normSrc) || m.poster || '';
+            const poster = vimeoThumbFromSrc(normSrc) || m.poster || "";
 
             return `
               <button
@@ -713,14 +689,14 @@
                   loading="lazy"
                   src="${
                     poster ||
-                    'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='
+                    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
                   }"
                   alt="video thumb ${i + 1}"
                 />
               </button>
             `;
           })
-          .join('');
+          .join("");
 
         app.innerHTML = `
           <article class="project" data-slug="${p.slug}">
@@ -736,21 +712,18 @@
           </article>
         `;
 
-        // Küçük görsellere tıklama
-        $$('#thumbs .thumb').forEach((btn) =>
-          btn.addEventListener('click', (e) => {
+        $$("#thumbs .thumb").forEach((btn) =>
+          btn.addEventListener("click", (e) => {
             const idx = Number(e.currentTarget.dataset.idx);
             switchMedia(idx);
           })
         );
 
-        // Hero'ya tıklayınca lightbox aç
-        $('#hero').addEventListener('click', () => openLightbox());
+        $("#hero").addEventListener("click", () => openLightbox());
 
-        document.addEventListener('keydown', onKeyNav);
+        document.addEventListener("keydown", onKeyNav);
       }
 
-      // İletişim sayfası
       function renderContact() {
         app.innerHTML = `
           <section class="contact">
@@ -791,9 +764,8 @@
         app.innerHTML = `<p>Sayfa bulunamadı.</p>`;
       }
 
-      // === Hero / media switching ===
       function renderHeroMedia(m) {
-        if (m && m.type === 'video') {
+        if (m && m.type === "video") {
           const src = normalizeVideoSrc(m.src);
 
           if (isEmbedPlatform(src)) {
@@ -813,7 +785,7 @@
             <video
               class="hero-media"
               src="${src}"
-              ${m.poster ? `poster="${m.poster}"` : ''}
+              ${m.poster ? `poster="${m.poster}"` : ""}
               controls
               playsinline
               preload="metadata"
@@ -824,7 +796,7 @@
         return `
           <img
             class="hero-media"
-            src="${m?.src || ''}"
+            src="${m?.src || ""}"
             alt="project media"
           />
         `;
@@ -834,13 +806,13 @@
         if (!currentProject) return;
         currentIndex = idx;
         const media = currentProject.media[idx];
-        $('#hero').innerHTML = renderHeroMedia(media);
+        $("#hero").innerHTML = renderHeroMedia(media);
       }
 
       function onKeyNav(e) {
         if (!currentProject) return;
-        if (e.key === 'ArrowRight') nextMedia();
-        if (e.key === 'ArrowLeft') prevMedia();
+        if (e.key === "ArrowRight") nextMedia();
+        if (e.key === "ArrowLeft") prevMedia();
       }
 
       function nextMedia() {
@@ -853,47 +825,46 @@
         switchMedia((currentIndex - 1 + n) % n);
       }
 
-      // === Lightbox ===
-      const lb = $('#lightbox');
-      const lbInner = $('#lbInner');
-      const lbImg = $('#lbImg');
-      const lbVideo = $('#lbVideo');
-      const lbClose = $('#lbClose');
-      const lbPrev = $('#lbPrev');
-      const lbNext = $('#lbNext');
+      const lb = $("#lightbox");
+      const lbInner = $("#lbInner");
+      const lbImg = $("#lbImg");
+      const lbVideo = $("#lbVideo");
+      const lbClose = $("#lbClose");
+      const lbPrev = $("#lbPrev");
+      const lbNext = $("#lbNext");
 
-      const lbFrame = document.createElement('iframe');
-      lbFrame.className = 'lb-media';
-      lbFrame.setAttribute('frameborder', '0');
+      const lbFrame = document.createElement("iframe");
+      lbFrame.className = "lb-media";
+      lbFrame.setAttribute("frameborder", "0");
       lbFrame.setAttribute(
-        'allow',
-        'autoplay; fullscreen; picture-in-picture'
+        "allow",
+        "autoplay; fullscreen; picture-in-picture"
       );
-      lbFrame.setAttribute('allowfullscreen', '');
+      lbFrame.setAttribute("allowfullscreen", "");
 
       function openLightbox() {
         if (!currentProject) return;
-        lb.classList.add('open');
-        lb.setAttribute('aria-hidden', 'false');
+        lb.classList.add("open");
+        lb.setAttribute("aria-hidden", "false");
         renderLbMedia();
-        document.addEventListener('keydown', onLbKey);
+        document.addEventListener("keydown", onLbKey);
       }
 
       function closeLightbox() {
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden', 'true');
+        lb.classList.remove("open");
+        lb.setAttribute("aria-hidden", "true");
         lbVideo.pause();
-        lbFrame.src = '';
-        document.removeEventListener('keydown', onLbKey);
+        lbFrame.src = "";
+        document.removeEventListener("keydown", onLbKey);
       }
 
       function onLbKey(e) {
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowRight') {
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") {
           nextMedia();
           renderLbMedia();
         }
-        if (e.key === 'ArrowLeft') {
+        if (e.key === "ArrowLeft") {
           prevMedia();
           renderLbMedia();
         }
@@ -902,40 +873,40 @@
       function renderLbMedia() {
         const m = currentProject.media[currentIndex];
 
-        lbImg.style.display = 'none';
-        lbVideo.style.display = 'none';
-        if (lbFrame.isConnected) lbFrame.style.display = 'none';
+        lbImg.style.display = "none";
+        lbVideo.style.display = "none";
+        if (lbFrame.isConnected) lbFrame.style.display = "none";
 
-        if (m.type === 'video') {
+        if (m.type === "video") {
           const src = normalizeVideoSrc(m.src);
 
           if (isEmbedPlatform(src)) {
             if (!lbFrame.isConnected) lbInner.appendChild(lbFrame);
             lbFrame.src = src;
-            lbFrame.style.display = 'block';
+            lbFrame.style.display = "block";
           } else {
             lbVideo.src = src;
             if (m.poster) lbVideo.poster = m.poster;
-            lbVideo.style.display = 'block';
+            lbVideo.style.display = "block";
             lbVideo.play();
           }
         } else {
           lbImg.src = m.src;
-          lbImg.alt = currentProject.title || 'still';
-          lbImg.style.display = 'block';
+          lbImg.alt = currentProject.title || "still";
+          lbImg.style.display = "block";
         }
       }
 
-      lbClose.addEventListener('click', closeLightbox);
-      lbPrev.addEventListener('click', () => {
+      lbClose.addEventListener("click", closeLightbox);
+      lbPrev.addEventListener("click", () => {
         prevMedia();
         renderLbMedia();
       });
-      lbNext.addEventListener('click', () => {
+      lbNext.addEventListener("click", () => {
         nextMedia();
         renderLbMedia();
       });
-      lb.addEventListener('click', (e) => {
+      lb.addEventListener("click", (e) => {
         if (e.target === lb) closeLightbox();
       });
     </script>
