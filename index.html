@@ -1,597 +1,583 @@
 <!DOCTYPE html>
 <html lang="tr">
-  <head>
-    <meta charset="utf-8" />
-    <!-- Artık responsive: genişlik cihaz genişliği kadar -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8" />
+  <!-- Artık responsive: genişlik cihaz genişliği kadar -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anıl Yemelek | Director of Photography</title>
+  <meta name="description" content="Anıl Yemelek – Film/TV/Commercial portfolio." />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --fg: #e6e6e6;
+      --muted: #9b9b9b;
+      --brand: #5ce65c;
+      --card: #121212;
+      --grid-gap: 18px;
+      --maxw: 1200px;
+    }
 
-    <title>Anıl Yemelek | Director of Photography</title>
-    <meta
-      name="description"
-      content="Anıl Yemelek – Film/TV/Commercial portfolio."
-    />
+    * {
+      box-sizing: border-box;
+    }
 
-    <style>
-      :root {
-        --bg: #0a0a0a;
-        --fg: #e6e6e6;
-        --muted: #9b9b9b;
-        --brand: #5ce65c;
-        --card: #121212;
-        --grid-gap: 18px;
-        --maxw: 1200px;
-      }
+    html,
+    body {
+      height: 100%;
+    }
 
-      * {
-        box-sizing: border-box;
-      }
+    body {
+      margin: 0;
+      font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+      Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--fg);
+    }
 
-      html,
-      body {
-        height: 100%;
-      }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-      body {
-        margin: 0;
-        font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
-          Arial, "Apple Color Emoji", "Segoe UI Emoji";
-        background: var(--bg);
-        color: var(--fg);
-      }
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+    /* ===== Header ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(1.2) blur(6px);
+      background: color-mix(in hsl, var(--bg) 80%, transparent);
+      border-bottom: 1px solid #1f1f1f;
+    }
 
-      .wrap {
-        max-width: var(--maxw);
-        margin: 0 auto;
-        padding: 0 16px;
-      }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      gap: 10px;
+    }
 
-      /* ===== Header ===== */
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      flex-wrap: wrap;
+    }
 
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        backdrop-filter: saturate(1.2) blur(6px);
-        background: color-mix(in hsl, var(--bg) 80%, transparent);
-        border-bottom: 1px solid #1f1f1f;
-      }
+    .brand .name {
+      color: var(--brand);
+      font-size: 18px;
+    }
 
-      .topbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 0;
-        gap: 10px;
-      }
+    .brand .tag {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 12px;
+    }
 
-      .brand {
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        flex-wrap: wrap;
-      }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 0px;
+      flex-wrap: wrap;
+    }
 
+    .navlink {
+      opacity: 0.9;
+      font-size: 14px;
+    }
+
+    .navlink:hover {
+      opacity: 1;
+    }
+
+    .navlink[href="#/contact"] {
+      color: var(--brand);
+      font-weight: 600;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      opacity: 0.9;
+    }
+
+    .icon:hover {
+      opacity: 1;
+    }
+
+    /* Daha geniş ekranlarda yazıları büyütelim */
+    @media (min-width: 768px) {
       .brand .name {
-        color: var(--brand);
-        font-size: 18px;
+        font-size: 22px;
       }
 
       .brand .tag {
-        color: var(--muted);
-        font-weight: 500;
-        font-size: 12px;
-      }
-
-      nav {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      .navlink {
-        opacity: 0.9;
-        font-size: 14px;
-      }
-
-      .navlink:hover {
-        opacity: 1;
-      }
-
-      .navlink[href="#/contact"] {
-        color: var(--brand);
-        font-weight: 600;
-      }
-
-      .icon {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        opacity: 0.9;
-      }
-
-      .icon:hover {
-        opacity: 1;
-      }
-
-      /* Daha geniş ekranlarda yazıları büyütelim */
-      @media (min-width: 768px) {
-        .brand .name {
-          font-size: 22px;
-        }
-        .brand .tag {
-          font-size: 13px;
-        }
-      }
-
-      /* ===== Main / Pages ===== */
-
-      main {
-        padding: 20px 0 60px;
-      }
-
-      /* ===== Filter bar ===== */
-
-      .filters {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        flex-wrap: nowrap;
-        margin: 4px 0 18px 0;
-        overflow-x: auto;
-        padding-bottom: 4px;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .filters::-webkit-scrollbar {
-        display: none;
-      }
-
-      .filter-btn {
-        white-space: nowrap;
-        padding: 8px 14px;
-        border: 1px solid #262626;
-        background: #141414;
-        color: #ddd;
-        border-radius: 999px;
         font-size: 13px;
-        cursor: pointer;
-        transition:
-          0.2s ease transform,
-          0.2s ease opacity,
-          0.2s ease border-color;
-        opacity: 0.9;
       }
+    }
 
-      .filter-btn:hover {
-        opacity: 1;
-        border-color: #333;
-      }
+    /* ===== Main / Pages ===== */
+    main {
+      padding: 20px 0 60px;
+    }
 
-      .filter-btn.active {
-        color: #000;
-        background: var(--brand);
-        border-color: var(--brand);
-        font-weight: 700;
-        opacity: 1;
-      }
+    /* ===== Filter bar ===== */
+    .filters {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: nowrap;
+      margin: 4px 0 18px 0;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
 
-      /* ===== Grid (Home) ===== */
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
 
-      .grid {
-        display: grid;
-        gap: var(--grid-gap);
-        grid-template-columns: repeat(12, 1fr);
-      }
+    .filter-btn {
+      white-space: nowrap;
+      padding: 8px 14px;
+      border: 1px solid #262626;
+      background: #141414;
+      color: #ddd;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+      transition:
+              0.2s ease transform,
+              0.2s ease opacity,
+              0.2s ease border-color;
+      opacity: 0.9;
+    }
 
+    .filter-btn:hover {
+      opacity: 1;
+      border-color: #333;
+    }
+
+    .filter-btn.active {
+      color: #000;
+      background: var(--brand);
+      border-color: var(--brand);
+      font-weight: 700;
+      opacity: 1;
+    }
+
+    /* ===== Grid (Home) ===== */
+    .grid {
+      display: grid;
+      gap: var(--grid-gap);
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .card {
+      grid-column: span 12;
+      background: var(--card);
+      border: 1px solid #1b1b1b;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-media {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      background: #0f0f0f;
+    }
+
+    .card:hover .overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.9));
+      color: #fff;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 0.25s ease;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #ddd;
+      opacity: 0.9;
+    }
+
+    /* Tablet: 2 kart / satır */
+    @media (min-width: 640px) {
       .card {
-        grid-column: span 12;
-        background: var(--card);
-        border: 1px solid #1b1b1b;
-        border-radius: 14px;
-        overflow: hidden;
-        position: relative;
+        grid-column: span 6;
       }
+    }
 
-      .card-media {
-        aspect-ratio: 16 / 9;
-        width: 100%;
-        object-fit: cover;
-        display: block;
-        background: #0f0f0f;
+    /* Desktop: 3 kart / satır */
+    @media (min-width: 1024px) {
+      .card {
+        grid-column: span 4;
       }
+    }
 
-      .card:hover .overlay {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* ===== Project Page ===== */
+    .project {
+      display: grid;
+      gap: 22px;
+    }
 
-      .overlay {
-        position: absolute;
-        inset: auto 0 0 0;
-        padding: 14px 16px;
-        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.9));
-        color: #fff;
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 12px;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: 0.25s ease;
-      }
+    .hero {
+      background: var(--card);
+      border: 1px solid #1b1b1b;
+      border-radius: 14px;
+      overflow: hidden;
+    }
 
-      .title {
-        font-size: 16px;
-        font-weight: 700;
-      }
+    .hero-media {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: #000;
+    }
 
-      .subtitle {
-        font-size: 13px;
-        color: #ddd;
-        opacity: 0.9;
-      }
+    .thumbs {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
 
-      /* Tablet: 2 kart / satır */
-      @media (min-width: 640px) {
-        .card {
-          grid-column: span 6;
-        }
-      }
+    .thumb {
+      background: #101010;
+      border: 1px solid #222;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+    }
 
-      /* Desktop: 3 kart / satır */
-      @media (min-width: 1024px) {
-        .card {
-          grid-column: span 4;
-        }
-      }
+    .thumb img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
 
-      /* ===== Project Page ===== */
+    .caption {
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-      .project {
-        display: grid;
-        gap: 22px;
-      }
+    /* ===== Lightbox (fullscreen media) ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
 
-      .hero {
-        background: var(--card);
-        border: 1px solid #1b1b1b;
-        border-radius: 14px;
-        overflow: hidden;
-      }
+    .lightbox.open {
+      display: flex;
+    }
 
-      .hero-media {
-        display: block;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        object-fit: contain;
-        background: #000;
-      }
+    .lb-inner {
+      max-width: min(92vw, 1400px);
+      width: 100%;
+    }
 
-      .thumbs {
-        display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      }
+    .lb-media {
+      width: 100%;
+      max-height: 86vh;
+      object-fit: contain;
+      background: #000;
+    }
 
-      .thumb {
-        background: #101010;
-        border: 1px solid #222;
-        border-radius: 10px;
-        overflow: hidden;
-        cursor: pointer;
-      }
+    .lb-close,
+    .lb-arrow {
+      position: fixed;
+      font-size: 28px;
+      background: #111;
+      border: 1px solid #333;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
 
-      .thumb img {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-        display: block;
-      }
+    .lb-close {
+      top: 16px;
+      right: 16px;
+    }
 
-      .caption {
-        color: var(--muted);
-        font-size: 14px;
-      }
+    .lb-arrow {
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-      /* ===== Lightbox (fullscreen media) ===== */
+    .lb-prev {
+      left: 16px;
+    }
 
-      .lightbox {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.95);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 100;
-      }
+    .lb-next {
+      right: 16px;
+    }
 
-      .lightbox.open {
-        display: flex;
-      }
+    /* ===== Contact page ===== */
+    .contact {
+      display: grid;
+      gap: 18px;
+      max-width: 720px;
+      margin: 0;
+    }
 
-      .lb-inner {
-        max-width: min(92vw, 1400px);
-        width: 100%;
-      }
+    .contact p {
+      color: #ddd;
+    }
 
-      .lb-media {
-        width: 100%;
-        max-height: 86vh;
-        object-fit: contain;
-        background: #000;
-      }
+    .contact a.link {
+      color: #fff;
+      text-decoration: underline;
+      text-decoration-color: var(--brand);
+    }
 
-      .lb-close,
-      .lb-arrow {
-        position: fixed;
-        font-size: 28px;
-        background: #111;
-        border: 1px solid #333;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        cursor: pointer;
-      }
+    .contact .grid2 {
+      display: grid;
+      gap: 16px;
+    }
 
-      .lb-close {
-        top: 16px;
-        right: 16px;
-      }
-
-      .lb-arrow {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .lb-prev {
-        left: 16px;
-      }
-
-      .lb-next {
-        right: 16px;
-      }
-
-      /* ===== Contact page ===== */
-
-      .contact {
-        display: grid;
-        gap: 18px;
-        max-width: 720px;
-        margin: 0;
-      }
-
-      .contact p {
-        color: #ddd;
-      }
-
-      .contact a.link {
-        color: #fff;
-        text-decoration: underline;
-        text-decoration-color: var(--brand);
-      }
-
+    @media (min-width: 640px) {
       .contact .grid2 {
-        display: grid;
-        gap: 16px;
+        grid-template-columns: 1fr 1fr;
       }
+    }
 
-      @media (min-width: 640px) {
-        .contact .grid2 {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
+    /* ===== Generic buttons ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid #2a2a2a;
+      background: #141414;
+    }
 
-      /* ===== Generic buttons ===== */
+    .btn:hover {
+      border-color: #3a3a3a;
+    }
 
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: 1px solid #2a2a2a;
-        background: #141414;
-      }
-
-      .btn:hover {
-        border-color: #3a3a3a;
-      }
-
-      /* ===== Footer ===== */
-
-      footer {
-        color: var(--muted);
-        text-align: center;
-        padding: 26px 0;
-        border-top: 1px solid #1f1f1f;
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- ===== Site Header ===== -->
-    <header>
-      <div class="wrap topbar">
-        <div class="brand">
-          <a href="#/" class="name">ANIL YEMELEK</a>
-          <span class="tag">Director of Photography</span>
-        </div>
-
-        <nav>
-          <a class="navlink" href="#/contact">contact</a>
-          <a
-            class="icon"
-            aria-label="Instagram"
-            href="https://www.instagram.com/anilyemelek/"
-            target="_blank"
-            rel="noreferrer noopener"
-            title="Instagram"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              width="20"
-              height="20"
-              aria-hidden="true"
-            >
-              <path
-                d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM18 6.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-              />
-            </svg>
-          </a>
-        </nav>
-      </div>
-    </header>
-
-    <!-- SPA içerik alanı -->
-    <main class="wrap" id="app"></main>
-
-    <!-- Lightbox (fullscreen media) -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-      <button class="lb-close" aria-label="Close" id="lbClose">✕</button>
-      <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous">‹</button>
-
-      <div class="lb-inner" id="lbInner">
-        <img id="lbImg" class="lb-media" alt="" />
-        <video id="lbVideo" class="lb-media" controls playsinline></video>
-      </div>
-
-      <button class="lb-arrow lb-next" id="lbNext" aria-label="Next">›</button>
+    /* ===== Footer ===== */
+    footer {
+      color: var(--muted);
+      text-align: center;
+      padding: 26px 0;
+      border-top: 1px solid #1f1f1f;
+    }
+  </style>
+</head>
+<body>
+<!-- ===== Site Header ===== -->
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <a href="#/" class="name">ANIL YEMELEK</a>
+      <span class="tag">Director of Photography</span>
     </div>
-
-    <footer style="font-size: 12px; letter-spacing: 0.2px; opacity: 0.8">
-      <div class="wrap">
-        © <span id="year"></span> Anıl Yemelek • All rights reserved • No part
-        of this site may be reproduced without permission.
-      </div>
-    </footer>
-
-    <script>
-      const $ = (sel, el = document) => el.querySelector(sel);
-      const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
-      const app = $("#app");
-
-      $("#year").textContent = new Date().getFullYear();
-
-      const isEmbedPlatform = (src = "") =>
-        /player\.vimeo\.com|youtube\.com|youtu\.be/i.test(src);
-
-      const normalizeVideoSrc = (src = "") => {
-        if (/^https?:\/\/vimeo\.com\//i.test(src)) {
-          const id = src.trim().split("/").pop();
-          return `https://player.vimeo.com/video/${id}`;
+    <nav>
+      <a class="navlink" href="#/contact">contact</a>
+      <a class="icon" aria-label="Instagram" href="https://www.instagram.com/anilyemelek/" target="_blank" rel="noreferrer noopener" title="Instagram">
+      </a>
+    </nav>
+  </div>
+</header>
+<!-- SPA içerik alanı -->
+<main class="wrap" id="app"></main>
+<!-- Lightbox (fullscreen media) -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" aria-label="Close" id="lbClose">✕</button>
+  <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <div class="lb-inner" id="lbInner">
+    <img id="lbImg" class="lb-media" alt="" />
+    <video id="lbVideo" class="lb-media" controls playsinline></video>
+  </div>
+  <button class="lb-arrow lb-next" id="lbNext" aria-label="Next">›</button>
+</div>
+<footer style="font-size: 12px; letter-spacing: 0.2px; opacity: 0.8">
+  <div class="wrap"> © <span id="year"></span> Anıl Yemelek • All rights reserved • No part of this site may be reproduced without permission. </div>
+</footer>
+<script>
+  const $ = (sel, el = document) => el.querySelector(sel);
+  const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
+  const app = $("#app");
+  $("#year").textContent = new Date().getFullYear();
+  const isEmbedPlatform = (src = "") => /player\.vimeo\.com|youtube\.com|youtu\.be/i.test(src);
+  const normalizeVideoSrc = (src = "") => {
+    if (/^https?:\/\/vimeo\.com\//i.test(src)) {
+      const id = src.trim().split("/").pop();
+      return `https://player.vimeo.com/video/${id}`;
+    }
+    return src;
+  };
+  const vimeoThumbFromSrc = (src = "") => {
+    const m = src.match(/(?:video\/|vimeo\.com\/)\s*(\d+)/i);
+    return m ? `https://vumbnail.com/${m[1]}.jpg` : "";
+  };
+  const projects = [{
+    slug: "44iff",
+    title: "44. İstanbul Film Festivali",
+    subtitle: "Commercial",
+    cover: "assets/projects/44iff/44iff.avif",
+    description: "44. İstanbul Film Festivali",
+    media: [{
+      type: "video",
+      src: "https://player.vimeo.com/video/1087643931"
+    }]
+  }, {
+    slug: "madrigalsenyoksun",
+    title: "Madrigal feat Göksel - Ne zamandır sendeyim",
+    subtitle: "Music Video",
+    cover: "assets/projects/madrigalgoksel/madrigalgoksel.avif",
+    description: "Madrigal feat Göksel - Ne zamandır sendeyim",
+    media: [{
+      type: "video",
+      src: "https://player.vimeo.com/video/1033811464"
+    }]
+  }, {
+    slug: "wwf",
+    title: "WWF - Eye Wear Campaign",
+    subtitle: "Commercial",
+    cover: "assets/projects/wwf/wwf.avif",
+    description: "WWF - Eye Wear Campaign",
+    media: [{
+      type: "video",
+      src: "https://player.vimeo.com/video/1035195736"
+    }]
+  }, {
+      slug: "istanbulfilmfestivali",
+      title: "44.İSTANBUL FİLM FESTİVALİ",
+      subtitle: "Commercial",
+      cover: "https://vumbnail.com/1087642319.jpg",
+      description: "44.İSTANBUL FİLM FESTİVALİ",
+      media: [
+        {
+          type: "video",
+          src: "https://player.vimeo.com/video/1087642319"
         }
-        return src;
-      };
-
-      const vimeoThumbFromSrc = (src = "") => {
-        const m = src.match(/(?:video\/|vimeo\.com\/)\s*(\d+)/i);
-        return m ? `https://vumbnail.com/${m[1]}.jpg` : "";
-      };
-
-      const projects = [
+      ]
+    }, {
+      slug: "madrigalsenyadahic",
+      title: "Madrigal-Sen ya da hiç",
+      subtitle: "Music Video",
+      cover: "https://vumbnail.com/1033808394.jpg",
+      description: "Madrigal-Sen ya da hiç",
+      media: [
         {
-          slug: "cmf1",
-          title: "CMF Phone 1",
-          subtitle: "Commercial",
-          cover: "assets/projects/cmf1/cmf1.avif",
-          description: "CMF Phone 1 by Nothing",
-          media: [
-            { type: "video", src: "https://player.vimeo.com/video/1089788027" }
-          ]
-        },
-        {
-          slug: "44iff",
-          title: "44. İstanbul Film Festivali",
-          subtitle: "Commercial",
-          cover: "assets/projects/44iff/44iff.avif",
-          description: "44. İstanbul Film Festivali",
-          media: [
-            { type: "video", src: "https://player.vimeo.com/video/1087643931" }
-          ]
-        },
-        {
-          slug: "madrigalsenyoksun",
-          title: "Madrigal - Sen ya da hiç",
-          subtitle: "Music Video",
-          cover: "assets/projects/madrigalgoksel/madrigalgoksel.avif",
-          description: "Madrigal feat Göksel - Ne zamandır sendeyim",
-          media: [
-            { type: "video", src: "https://player.vimeo.com/video/1033811464" }
-          ]
-        },
-        {
-          slug: "wwf",
-          title: "WWF - Eye Wear Campaign",
-          subtitle: "Commercial",
-          cover: "assets/projects/wwf/wwf.avif",
-          description: "WWF - Eye Wear Campaign",
-          media: [
-            { type: "video", src: "https://player.vimeo.com/video/1035195736" }
-          ]
-        },
-        {
-          slug: "madrigal",
-          title: "Madrigal - Sen Yoksun",
-          subtitle: "Music Video",
-          cover: "assets/projects/madrigal/madrigal.avif",
-          description: "Madrigal - Sen Yoksun",
-          media: [
-            { type: "video", src: "https://player.vimeo.com/video/1033797724" }
-          ]
+          type: "video",
+          src: "https://player.vimeo.com/video/1033808394"
         }
-      ];
-
-      let currentProject = null;
-      let currentIndex = 0;
-      let currentFilter = "All";
-
-      const getCategories = () => {
-        const map = new Map();
-        projects.forEach((p) => {
-          const lc = (p.subtitle || "").trim().toLowerCase();
-          if (lc && !map.has(lc)) map.set(lc, p.subtitle.trim());
-        });
-        return ["All", ...Array.from(map.values())];
-      };
-
-      function router() {
-        const hash = location.hash || "#/";
-        const [, route, param] = hash.split("/");
-
-        if (!route) {
-          renderHome();
-        } else if (route === "project" && param) {
-          renderProject(param);
-        } else if (route === "contact") {
-          renderContact();
-        } else {
-          renderNotFound();
+      ]
+    }, {
+      slug: "wwfmarketeyewearcampaign",
+      title: "wwfmarket-eye wear campaign",
+      subtitle: "Commercial",
+      cover: "https://vumbnail.com/1033598760.jpg",
+      description: "wwfmarket-eye wear campaign",
+      media: [
+        {
+          type: "video",
+          src: "https://player.vimeo.com/video/1033598760"
         }
-      }
+      ]
+    }, {
+      slug: "cmf1",
+      title: "CMF Phone 1",
+      subtitle: "Commercial",
+      cover: "assets/projects/cmf1/cmf1.avif",
+      description: "CMF Phone 1 by Nothing",
+      media: [{
+        type: "video",
+        src: "https://player.vimeo.com/video/1089788027"
+      }]
+    }
+  //   ,{
+  //   slug: "madrigal",
+  //   title: "Madrigal - Sen Yoksun",
+  //   subtitle: "Music Video",
+  //   cover: "assets/projects/madrigal/madrigal.avif",
+  //   description: "Madrigal - Sen Yoksun",
+  //   media: [{
+  //     type: "video",
+  //     src: "https://player.vimeo.com/video/1033797724"
+  //   }]
+  // }
+  ];
+  let currentProject = null;
+  let currentIndex = 0;
+  let currentFilter = "All";
+  const getCategories = () => {
+    const map = new Map();
+    projects.forEach((p) => {
+      const lc = (p.subtitle || "").trim().toLowerCase();
+      if (lc && !map.has(lc)) map.set(lc, p.subtitle.trim());
+    });
+    return ["All", ...Array.from(map.values())];
+  };
 
-      window.addEventListener("hashchange", router);
-      window.addEventListener("DOMContentLoaded", router);
+  function router() {
+    const hash = location.hash || "#/";
+    const [, route, param] = hash.split("/");
+    if (!route) {
+      renderHome();
+    } else if (route === "project" && param) {
+      renderProject(param);
+    } else if (route === "contact") {
+      renderContact();
+    } else {
+      renderNotFound();
+    }
+  }
+  window.addEventListener("hashchange", router);
+  window.addEventListener("DOMContentLoaded", router);
 
-      function renderHome() {
-        const categories = getCategories();
+  function renderHome() {
+    const categories = getCategories();
+    const filtersHTML = `
 
-        const filtersHTML = `
-          <div class="filters" role="tablist" aria-label="Filter projects by category">
+			<div class="filters" role="tablist" aria-label="Filter projects by category">
             ${categories
-              .map(
-                (cat) => `
-              <button
+            .map(
+                    (cat) => `
+
+				<button
                 class="filter-btn ${cat === currentFilter ? "active" : ""}"
                 role="tab"
                 data-cat="${cat}"
@@ -599,85 +585,75 @@
                 ${cat}
               </button>
             `
-              )
-              .join("")}
-          </div>
+            )
+            .join("")}
+
+			</div>
         `;
+    const filtered = projects.filter((p) => {
+      if (currentFilter === "All") return true;
+      return (
+              (p.subtitle || "").trim().toLowerCase() === currentFilter.trim().toLowerCase());
+    });
+    const gridHTML = `
 
-        const filtered = projects.filter((p) => {
-          if (currentFilter === "All") return true;
-          return (
-            (p.subtitle || "").trim().toLowerCase() ===
-            currentFilter.trim().toLowerCase()
-          );
-        });
-
-        const gridHTML = `
-          <section class="grid" aria-label="Works grid">
+			<section class="grid" aria-label="Works grid">
             ${filtered
-              .map(
-                (p) => `
-              <a
+            .map(
+                    (p) => `
+
+				<a
                 class="card"
                 href="#/project/${p.slug}"
                 aria-label="${p.title} ${p.subtitle}"
               >
-                <img
+					<img
                   class="card-media"
                   loading="lazy"
                   src="${p.cover}"
                   alt="${p.title} cover"
                 />
-                <div class="overlay">
-                  <div>
-                    <div class="title">${p.title}</div>
-                    <div class="subtitle">${p.subtitle}</div>
-                  </div>
-                </div>
-              </a>
+					<div class="overlay">
+						<div>
+							<div class="title">${p.title}</div>
+							<div class="subtitle">${p.subtitle}</div>
+						</div>
+					</div>
+				</a>
             `
-              )
-              .join("")}
-          </section>
+            )
+            .join("")}
+
+			</section>
         `;
+    app.innerHTML = filtersHTML + gridHTML;
+    $$(".filter-btn", app).forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentFilter = btn.dataset.cat || "All";
+        $$(".filter-btn", app).forEach((b) => b.classList.toggle("active", b === btn));
+        renderHome();
+        // window.scrollTo({
+        //   top: document.querySelector(".filters").getBoundingClientRect().top + window.scrollY - 12,
+        //   behavior: "instant"
+        // });
+      });
+    });
+  }
 
-        app.innerHTML = filtersHTML + gridHTML;
+  function renderProject(slug) {
+    const p = projects.find((x) => x.slug === slug);
+    if (!p) {
+      renderNotFound();
+      return;
+    }
+    currentProject = p;
+    currentIndex = 0;
+    const thumbsHtml = p.media.map((m, i) => {
+      const normSrc = normalizeVideoSrc(m.src);
+      const poster = vimeoThumbFromSrc(normSrc) || m.poster || "";
+      return `
 
-        $$(".filter-btn", app).forEach((btn) => {
-          btn.addEventListener("click", () => {
-            currentFilter = btn.dataset.cat || "All";
-            $$(".filter-btn", app).forEach((b) =>
-              b.classList.toggle("active", b === btn)
-            );
-            renderHome();
-            window.scrollTo({
-              top:
-                document.querySelector(".filters").getBoundingClientRect().top +
-                window.scrollY -
-                12,
-              behavior: "instant"
-            });
-          });
-        });
-      }
-
-      function renderProject(slug) {
-        const p = projects.find((x) => x.slug === slug);
-        if (!p) {
-          renderNotFound();
-          return;
-        }
-
-        currentProject = p;
-        currentIndex = 0;
-
-        const thumbsHtml = p.media
-          .map((m, i) => {
-            const normSrc = normalizeVideoSrc(m.src);
-            const poster = vimeoThumbFromSrc(normSrc) || m.poster || "";
-
-            return `
-              <button
+			<button
                 class="thumb"
                 data-idx="${i}"
                 data-type="video"
@@ -685,61 +661,59 @@
                 data-poster="${poster}"
                 aria-label="Open media ${i + 1}"
               >
-                <img
+				<img
                   loading="lazy"
                   src="${
-                    poster ||
-                    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-                  }"
+              poster ||
+              "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+      }"
                   alt="video thumb ${i + 1}"
                 />
-              </button>
+			</button>
             `;
-          })
-          .join("");
+    }).join("");
+    app.innerHTML = `
 
-        app.innerHTML = `
-          <article class="project" data-slug="${p.slug}">
-            <section class="hero" id="hero">
+			<article class="project" data-slug="${p.slug}">
+				<section class="hero" id="hero">
               ${renderHeroMedia(p.media[0])}
             </section>
-            <section class="thumbs" id="thumbs">
+				<section class="thumbs" id="thumbs">
               ${thumbsHtml}
             </section>
-            <section class="caption">
+				<section class="caption">
               ${p.description}
             </section>
-          </article>
+			</article>
         `;
+    $$("#thumbs .thumb").forEach((btn) => btn.addEventListener("click", (e) => {
+      const idx = Number(e.currentTarget.dataset.idx);
+      switchMedia(idx);
+    }));
+    $("#hero").addEventListener("click", () => openLightbox());
+    document.addEventListener("keydown", onKeyNav);
+  }
 
-        $$("#thumbs .thumb").forEach((btn) =>
-          btn.addEventListener("click", (e) => {
-            const idx = Number(e.currentTarget.dataset.idx);
-            switchMedia(idx);
-          })
-        );
+  function renderContact() {
+    app.innerHTML = `
 
-        $("#hero").addEventListener("click", () => openLightbox());
-
-        document.addEventListener("keydown", onKeyNav);
-      }
-
-      function renderContact() {
-        app.innerHTML = `
-          <section class="contact">
-            <p>Please contact us for collaboration, projects and representation.</p>
-            <div class="grid2">
-              <div>
-                <p><strong>E-mail:</strong>
-                  <a class="link" href="mailto:anlyemelek@gmail.com">
+			<section class="contact">
+				<p>Please contact us for collaboration, projects and representation.</p>
+				<div class="grid2">
+					<div>
+						<p>
+							<strong>E-mail:</strong>
+							<a class="link" href="mailto:anlyemelek@gmail.com">
                     anlyemelek@gmail.com
                   </a>
-                </p>
-                <p><strong>Telephone:</strong>
-                  <a class="link" href="tel:+905456776737">+90 545 677 67 37</a>
-                </p>
-                <p><strong>Instagram:</strong>
-                  <a
+						</p>
+						<p>
+							<strong>Telephone:</strong>
+							<a class="link" href="tel:+905456776737">+90 545 677 67 37</a>
+						</p>
+						<p>
+							<strong>Instagram:</strong>
+							<a
                     class="link"
                     href="https://www.instagram.com/anilyemelek/"
                     target="_blank"
@@ -747,30 +721,31 @@
                   >
                     instagram.com/anilyemelek
                   </a>
-                </p>
-                <a
+						</p>
+						<a
                   class="btn"
                   href="mailto:anlyemelek@gmail.com?&subject=Work Inquiry&body=Hello Anıl, Are you available between /N-/N days for our project?"
                 >
                   Send E-mail
                 </a>
-              </div>
-            </div>
-          </section>
+					</div>
+				</div>
+			</section>
         `;
-      }
+  }
 
-      function renderNotFound() {
-        app.innerHTML = `<p>Sayfa bulunamadı.</p>`;
-      }
+  function renderNotFound() {
+    app.innerHTML = `
+			<p>Sayfa bulunamadı.</p>`;
+  }
 
-      function renderHeroMedia(m) {
-        if (m && m.type === "video") {
-          const src = normalizeVideoSrc(m.src);
+  function renderHeroMedia(m) {
+    if (m && m.type === "video") {
+      const src = normalizeVideoSrc(m.src);
+      if (isEmbedPlatform(src)) {
+        return `
 
-          if (isEmbedPlatform(src)) {
-            return `
-              <iframe
+			<iframe
                 class="hero-media"
                 src="${src}"
                 frameborder="0"
@@ -779,10 +754,10 @@
                 style="width: 100%; aspect-ratio: 16 / 9;"
               ></iframe>
             `;
-          }
+      }
+      return `
 
-          return `
-            <video
+			<video
               class="hero-media"
               src="${src}"
               ${m.poster ? `poster="${m.poster}"` : ""}
@@ -791,124 +766,115 @@
               preload="metadata"
             ></video>
           `;
-        }
+    }
+    return `
 
-        return `
-          <img
+			<img
             class="hero-media"
             src="${m?.src || ""}"
             alt="project media"
           />
         `;
+  }
+
+  function switchMedia(idx) {
+    if (!currentProject) return;
+    currentIndex = idx;
+    const media = currentProject.media[idx];
+    $("#hero").innerHTML = renderHeroMedia(media);
+  }
+
+  function onKeyNav(e) {
+    if (!currentProject) return;
+    if (e.key === "ArrowRight") nextMedia();
+    if (e.key === "ArrowLeft") prevMedia();
+  }
+
+  function nextMedia() {
+    const n = currentProject.media.length;
+    switchMedia((currentIndex + 1) % n);
+  }
+
+  function prevMedia() {
+    const n = currentProject.media.length;
+    switchMedia((currentIndex - 1 + n) % n);
+  }
+  const lb = $("#lightbox");
+  const lbInner = $("#lbInner");
+  const lbImg = $("#lbImg");
+  const lbVideo = $("#lbVideo");
+  const lbClose = $("#lbClose");
+  const lbPrev = $("#lbPrev");
+  const lbNext = $("#lbNext");
+  const lbFrame = document.createElement("iframe");
+  lbFrame.className = "lb-media";
+  lbFrame.setAttribute("frameborder", "0");
+  lbFrame.setAttribute("allow", "autoplay; fullscreen; picture-in-picture");
+  lbFrame.setAttribute("allowfullscreen", "");
+
+  function openLightbox() {
+    if (!currentProject) return;
+    lb.classList.add("open");
+    lb.setAttribute("aria-hidden", "false");
+    renderLbMedia();
+    document.addEventListener("keydown", onLbKey);
+  }
+
+  function closeLightbox() {
+    lb.classList.remove("open");
+    lb.setAttribute("aria-hidden", "true");
+    lbVideo.pause();
+    lbFrame.src = "";
+    document.removeEventListener("keydown", onLbKey);
+  }
+
+  function onLbKey(e) {
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") {
+      nextMedia();
+      renderLbMedia();
+    }
+    if (e.key === "ArrowLeft") {
+      prevMedia();
+      renderLbMedia();
+    }
+  }
+
+  function renderLbMedia() {
+    const m = currentProject.media[currentIndex];
+    lbImg.style.display = "none";
+    lbVideo.style.display = "none";
+    if (lbFrame.isConnected) lbFrame.style.display = "none";
+    if (m.type === "video") {
+      const src = normalizeVideoSrc(m.src);
+      if (isEmbedPlatform(src)) {
+        if (!lbFrame.isConnected) lbInner.appendChild(lbFrame);
+        lbFrame.src = src;
+        lbFrame.style.display = "block";
+      } else {
+        lbVideo.src = src;
+        if (m.poster) lbVideo.poster = m.poster;
+        lbVideo.style.display = "block";
+        lbVideo.play();
       }
-
-      function switchMedia(idx) {
-        if (!currentProject) return;
-        currentIndex = idx;
-        const media = currentProject.media[idx];
-        $("#hero").innerHTML = renderHeroMedia(media);
-      }
-
-      function onKeyNav(e) {
-        if (!currentProject) return;
-        if (e.key === "ArrowRight") nextMedia();
-        if (e.key === "ArrowLeft") prevMedia();
-      }
-
-      function nextMedia() {
-        const n = currentProject.media.length;
-        switchMedia((currentIndex + 1) % n);
-      }
-
-      function prevMedia() {
-        const n = currentProject.media.length;
-        switchMedia((currentIndex - 1 + n) % n);
-      }
-
-      const lb = $("#lightbox");
-      const lbInner = $("#lbInner");
-      const lbImg = $("#lbImg");
-      const lbVideo = $("#lbVideo");
-      const lbClose = $("#lbClose");
-      const lbPrev = $("#lbPrev");
-      const lbNext = $("#lbNext");
-
-      const lbFrame = document.createElement("iframe");
-      lbFrame.className = "lb-media";
-      lbFrame.setAttribute("frameborder", "0");
-      lbFrame.setAttribute(
-        "allow",
-        "autoplay; fullscreen; picture-in-picture"
-      );
-      lbFrame.setAttribute("allowfullscreen", "");
-
-      function openLightbox() {
-        if (!currentProject) return;
-        lb.classList.add("open");
-        lb.setAttribute("aria-hidden", "false");
-        renderLbMedia();
-        document.addEventListener("keydown", onLbKey);
-      }
-
-      function closeLightbox() {
-        lb.classList.remove("open");
-        lb.setAttribute("aria-hidden", "true");
-        lbVideo.pause();
-        lbFrame.src = "";
-        document.removeEventListener("keydown", onLbKey);
-      }
-
-      function onLbKey(e) {
-        if (e.key === "Escape") closeLightbox();
-        if (e.key === "ArrowRight") {
-          nextMedia();
-          renderLbMedia();
-        }
-        if (e.key === "ArrowLeft") {
-          prevMedia();
-          renderLbMedia();
-        }
-      }
-
-      function renderLbMedia() {
-        const m = currentProject.media[currentIndex];
-
-        lbImg.style.display = "none";
-        lbVideo.style.display = "none";
-        if (lbFrame.isConnected) lbFrame.style.display = "none";
-
-        if (m.type === "video") {
-          const src = normalizeVideoSrc(m.src);
-
-          if (isEmbedPlatform(src)) {
-            if (!lbFrame.isConnected) lbInner.appendChild(lbFrame);
-            lbFrame.src = src;
-            lbFrame.style.display = "block";
-          } else {
-            lbVideo.src = src;
-            if (m.poster) lbVideo.poster = m.poster;
-            lbVideo.style.display = "block";
-            lbVideo.play();
-          }
-        } else {
-          lbImg.src = m.src;
-          lbImg.alt = currentProject.title || "still";
-          lbImg.style.display = "block";
-        }
-      }
-
-      lbClose.addEventListener("click", closeLightbox);
-      lbPrev.addEventListener("click", () => {
-        prevMedia();
-        renderLbMedia();
-      });
-      lbNext.addEventListener("click", () => {
-        nextMedia();
-        renderLbMedia();
-      });
-      lb.addEventListener("click", (e) => {
-        if (e.target === lb) closeLightbox();
-      });
-    </script>
-  </body>
+    } else {
+      lbImg.src = m.src;
+      lbImg.alt = currentProject.title || "still";
+      lbImg.style.display = "block";
+    }
+  }
+  lbClose.addEventListener("click", closeLightbox);
+  lbPrev.addEventListener("click", () => {
+    prevMedia();
+    renderLbMedia();
+  });
+  lbNext.addEventListener("click", () => {
+    nextMedia();
+    renderLbMedia();
+  });
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb) closeLightbox();
+  });
+</script>
+</body>
 </html>
