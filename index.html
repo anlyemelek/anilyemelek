@@ -5,9 +5,8 @@
   <!-- Artık responsive: genişlik cihaz genişliği kadar -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anıl Yemelek | Director of Photography</title>
-<!--  <link rel="shortcut icon" 		  href="https://img-teknosa-sap.mncdn.com/_ui/responsive/theme-teknosa/images/icon/favicon-48x48.png" />-->
-<!--  <link rel="icon" type="image/png" href="https://img-teknosa-sap.mncdn.com/_ui/responsive/theme-teknosa/images/icon/favicon-48x48.png" sizes="48x48" />-->
-<!--  <link rel="icon" type="image/png" href="https://img-teknosa-sap.mncdn.com/_ui/responsive/theme-teknosa/images/icon/favicon-48x48.png" sizes="48x48" />-->
+  <link rel="shortcut icon"  href="assets/projects/shorticon/shorticonn.jpg" />
+  <link rel="icon" type="image/png" href="assets/projects/shorticon/shorticonn.jpg" sizes="48x48" />
   <meta name="description" content="Anıl Yemelek – Film/TV/Commercial portfolio." />
   <style>
     :root {
@@ -454,7 +453,19 @@
     const m = src.match(/(?:video\/|vimeo\.com\/)\s*(\d+)/i);
     return m ? `https://vumbnail.com/${m[1]}.jpg` : "";
   };
-  const projects = [{
+  const projects = [
+    {
+      slug: "hokus",
+      title: "Hokus 4 yaşında",
+      subtitle: "Commercial",
+      cover: "https://vumbnail.com/1152170812.jpg",
+      description: "Hokus 4 yaşında",
+      media: [{
+        type: "video",
+        src: "https://vimeo.com/1152170812"
+      }]
+    },
+    {
     slug: "44iff",
     title: "44. İstanbul Film Festivali",
     subtitle: "Commercial",
@@ -464,7 +475,8 @@
       type: "video",
       src: "https://player.vimeo.com/video/1087643931"
     }]
-  }, {
+    },
+    {
     slug: "madrigalsenyoksun",
     title: "Madrigal feat Göksel - Ne zamandır sendeyim",
     subtitle: "Music Video",
@@ -474,7 +486,8 @@
       type: "video",
       src: "https://player.vimeo.com/video/1033811464"
     }]
-  }, {
+    },
+    {
     slug: "wwf",
     title: "WWF - Eye Wear Campaign",
     subtitle: "Commercial",
@@ -484,7 +497,8 @@
       type: "video",
       src: "https://player.vimeo.com/video/1035195736"
     }]
-  }, {
+    },
+    {
       slug: "istanbulfilmfestivali",
       title: "44.İSTANBUL FİLM FESTİVALİ",
       subtitle: "Commercial",
@@ -496,7 +510,8 @@
           src: "https://player.vimeo.com/video/1087642319"
         }
       ]
-    }, {
+      },
+     {
       slug: "madrigalsenyadahic",
       title: "Madrigal-Sen ya da hiç",
       subtitle: "Music Video",
@@ -508,7 +523,8 @@
           src: "https://player.vimeo.com/video/1033808394"
         }
       ]
-    }, {
+     },
+     {
       slug: "wwfmarketeyewearcampaign",
       title: "wwfmarket-eye wear campaign",
       subtitle: "Commercial",
@@ -520,7 +536,8 @@
           src: "https://player.vimeo.com/video/1033598760"
         }
       ]
-    }, {
+     },
+     {
       slug: "cmf1",
       title: "CMF Phone 1",
       subtitle: "Commercial",
@@ -529,17 +546,6 @@
       media: [{
         type: "video",
         src: "https://player.vimeo.com/video/1089788027"
-      }]
-    },
-    {
-      slug: "hokus",
-      title: "Hokus 4 yaşında",
-      subtitle: "Commercial",
-      cover: "https://vumbnail.com/1152170812.jpg",
-      description: "Hokus 4 yaşında",
-      media: [{
-        type: "video",
-        src: "https://vimeo.com/1152170812"
       }]
     }
   //   ,{
