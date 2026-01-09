@@ -2,410 +2,12 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <!-- Artık responsive: genişlik cihaz genişliği kadar -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anıl Yemelek | Director of Photography</title>
   <link rel="shortcut icon"  href="assets/projects/shorticon/shorticonn.jpg" />
   <link rel="icon" type="image/png" href="assets/projects/shorticon/shorticonn.jpg" sizes="48x48" />
   <meta name="description" content="Anıl Yemelek – Film/TV/Commercial portfolio." />
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --fg: #e6e6e6;
-      --muted: #9b9b9b;
-      --brand: #5ce65c;
-      --card: #121212;
-      --grid-gap: 18px;
-      --maxw: 1200px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      height: 100%;
-    }
-
-    body {
-      margin: 0;
-      font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
-      Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: var(--bg);
-      color: var(--fg);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .wrap {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    /* ===== Header ===== */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: saturate(1.2) blur(6px);
-      background: color-mix(in hsl, var(--bg) 80%, transparent);
-      border-bottom: 1px solid #1f1f1f;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      gap: 10px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      flex-wrap: wrap;
-    }
-
-    .brand .name {
-      color: var(--brand);
-      font-size: 18px;
-    }
-
-    .brand .tag {
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 12px;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 0px;
-      flex-wrap: wrap;
-    }
-
-    .navlink {
-      opacity: 0.9;
-      font-size: 14px;
-    }
-
-    .navlink:hover {
-      opacity: 1;
-    }
-
-    .navlink[href="#/contact"] {
-      color: var(--brand);
-      font-weight: 600;
-    }
-
-    .icon {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      opacity: 0.9;
-    }
-
-    .icon:hover {
-      opacity: 1;
-    }
-
-    /* Daha geniş ekranlarda yazıları büyütelim */
-    @media (min-width: 768px) {
-      .brand .name {
-        font-size: 22px;
-      }
-
-      .brand .tag {
-        font-size: 13px;
-      }
-    }
-
-    /* ===== Main / Pages ===== */
-    main {
-      padding: 20px 0 60px;
-    }
-
-    /* ===== Filter bar ===== */
-    .filters {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: nowrap;
-      margin: 4px 0 18px 0;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .filters::-webkit-scrollbar {
-      display: none;
-    }
-
-    .filter-btn {
-      white-space: nowrap;
-      padding: 8px 14px;
-      border: 1px solid #262626;
-      background: #141414;
-      color: #ddd;
-      border-radius: 999px;
-      font-size: 13px;
-      cursor: pointer;
-      transition:
-              0.2s ease transform,
-              0.2s ease opacity,
-              0.2s ease border-color;
-      opacity: 0.9;
-    }
-
-    .filter-btn:hover {
-      opacity: 1;
-      border-color: #333;
-    }
-
-    .filter-btn.active {
-      color: #000;
-      background: var(--brand);
-      border-color: var(--brand);
-      font-weight: 700;
-      opacity: 1;
-    }
-
-    /* ===== Grid (Home) ===== */
-    .grid {
-      display: grid;
-      gap: var(--grid-gap);
-      grid-template-columns: repeat(12, 1fr);
-    }
-
-    .card {
-      grid-column: span 12;
-      background: var(--card);
-      border: 1px solid #1b1b1b;
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .card-media {
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      object-fit: cover;
-      display: block;
-      background: #0f0f0f;
-    }
-
-    .card:hover .overlay {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .overlay {
-      position: absolute;
-      inset: auto 0 0 0;
-      padding: 14px 16px;
-      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.9));
-      color: #fff;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 12px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: 0.25s ease;
-    }
-
-    .title {
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: #ddd;
-      opacity: 0.9;
-    }
-
-    /* Tablet: 2 kart / satır */
-    @media (min-width: 640px) {
-      .card {
-        grid-column: span 6;
-      }
-    }
-
-    /* Desktop: 3 kart / satır */
-    @media (min-width: 1024px) {
-      .card {
-        grid-column: span 4;
-      }
-    }
-
-    /* ===== Project Page ===== */
-    .project {
-      display: grid;
-      gap: 22px;
-    }
-
-    .hero {
-      background: var(--card);
-      border: 1px solid #1b1b1b;
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .hero-media {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: contain;
-      background: #000;
-    }
-
-    .thumbs {
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
-
-    .thumb {
-      background: #101010;
-      border: 1px solid #222;
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .thumb img {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      display: block;
-    }
-
-    .caption {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* ===== Lightbox (fullscreen media) ===== */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.95);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-    }
-
-    .lightbox.open {
-      display: flex;
-    }
-
-    .lb-inner {
-      max-width: min(92vw, 1400px);
-      width: 100%;
-    }
-
-    .lb-media {
-      width: 100%;
-      max-height: 86vh;
-      object-fit: contain;
-      background: #000;
-    }
-
-    .lb-close,
-    .lb-arrow {
-      position: fixed;
-      font-size: 28px;
-      background: #111;
-      border: 1px solid #333;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-    }
-
-    .lb-close {
-      top: 16px;
-      right: 16px;
-    }
-
-    .lb-arrow {
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .lb-prev {
-      left: 16px;
-    }
-
-    .lb-next {
-      right: 16px;
-    }
-
-    /* ===== Contact page ===== */
-    .contact {
-      display: grid;
-      gap: 18px;
-      max-width: 720px;
-      margin: 0;
-    }
-
-    .contact p {
-      color: #ddd;
-    }
-
-    .contact a.link {
-      color: #fff;
-      text-decoration: underline;
-      text-decoration-color: var(--brand);
-    }
-
-    .contact .grid2 {
-      display: grid;
-      gap: 16px;
-    }
-
-    @media (min-width: 640px) {
-      .contact .grid2 {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    /* ===== Generic buttons ===== */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid #2a2a2a;
-      background: #141414;
-    }
-
-    .btn:hover {
-      border-color: #3a3a3a;
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      color: var(--muted);
-      text-align: center;
-      padding: 26px 0;
-      border-top: 1px solid #1f1f1f;
-    }
-  </style>
-</head>
+  <style> .filter-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; z-index: 100; } .filter-overlay.open { opacity: 1; pointer-events: auto; } .filter-drawer { position: fixed; top: 0; right: 0; height: 100vh; width: min(80vw, 320px); background: #0f0f0f; border-left: 1px solid #1f1f1f; transform: translateX(100%); transition: transform 0.3s ease; z-index: 101; /* 🔥 overlay'den BÜYÜK */ padding-top: 64px; } .filter-drawer.open { transform: translateX(0); } .filter-list { list-style: none; margin: 0; padding: 8px 0; } .filter-list li { border-bottom: 1px solid #1a1a1a; } .filter-item { width: 100%; text-align: left; padding: 14px 18px; background: none; border: none; color: #e6e6e6; font-size: 15px; cursor: pointer; } .filter-item:hover { background: #161616; } .filter-item.active { color: var(--brand); font-weight: 700; } .filter-toggle { background: none; border: none; color: var(--fg); font-size: 22px; cursor: pointer; padding: 6px; } :root { --bg: #0a0a0a; --fg: #e6e6e6; --muted: #9b9b9b; --brand: #5ce65c; --card: #121212; --grid-gap: 18px; --maxw: 1200px; } * { box-sizing: border-box; } html, body { height: 100%; } body { margin: 0; font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--fg); } a { color: inherit; text-decoration: none; } .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 16px; } /* ===== Header ===== */ header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(1.2) blur(6px); background: color-mix(in hsl, var(--bg) 80%, transparent); border-bottom: 1px solid #1f1f1f; } .topbar { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; gap: 10px; } .brand { display: flex; align-items: baseline; gap: 8px; font-weight: 700; letter-spacing: 0.5px; flex-wrap: wrap; } .brand .name { color: var(--brand); font-size: 18px; } .brand .tag { color: var(--muted); font-weight: 500; font-size: 12px; } nav { display: flex; align-items: center; gap: 0px; flex-wrap: wrap; } .navlink { opacity: 0.9; font-size: 14px; } .navlink:hover { opacity: 1; } .navlink[href="#/contact"] { color: var(--brand); font-weight: 600; } .icon { display: inline-block; width: 20px; height: 20px; opacity: 0.9; } .icon:hover { opacity: 1; } @media (min-width: 768px) { .brand .name { font-size: 22px; } .brand .tag { font-size: 13px; } } main { padding: 20px 0 60px; } /* ===== Grid (Home) ===== */ .grid { display: grid; gap: var(--grid-gap); grid-template-columns: repeat(12, 1fr); } .card { grid-column: span 12; background: var(--card); border: 1px solid #1b1b1b; border-radius: 14px; overflow: hidden; position: relative; } .card-media { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; display: block; background: #0f0f0f; } .card:hover .overlay { opacity: 1; transform: translateY(0); } .overlay { position: absolute; inset: auto 0 0 0; padding: 14px 16px; background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.9)); color: #fff; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; opacity: 0; transform: translateY(10px); transition: 0.25s ease; } .title { font-size: 16px; font-weight: 700; } .subtitle { font-size: 13px; color: #ddd; opacity: 0.9; } /* Tablet: 2 kart / satır */ @media (min-width: 640px) { .card { grid-column: span 6; } } /* Desktop: 3 kart / satır */ @media (min-width: 1024px) { .card { grid-column: span 4; } } /* ===== Project Page ===== */ .project { display: grid; gap: 22px; } .hero { background: var(--card); border: 1px solid #1b1b1b; border-radius: 14px; overflow: hidden; } .hero-media { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #000; } .thumbs { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); } .thumb { background: #101010; border: 1px solid #222; border-radius: 10px; overflow: hidden; cursor: pointer; } .thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; } .caption { color: var(--muted); font-size: 14px; } /* ===== Lightbox (fullscreen media) ===== */ .lightbox { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); display: none; align-items: center; justify-content: center; z-index: 100; } .lightbox.open { display: flex; } .lb-inner { max-width: min(92vw, 1400px); width: 100%; } .lb-media { width: 100%; max-height: 86vh; object-fit: contain; background: #000; } .lb-close, .lb-arrow { position: fixed; font-size: 28px; background: #111; border: 1px solid #333; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; } .lb-close { top: 16px; right: 16px; } .lb-arrow { top: 50%; transform: translateY(-50%); } .lb-prev { left: 16px; } .lb-next { right: 16px; } /* ===== Contact page ===== */ .contact { display: grid; gap: 18px; max-width: 720px; margin: 0; } .contact p { color: #ddd; } .contact a.link { color: #fff; text-decoration: underline; text-decoration-color: var(--brand); } .contact .grid2 { display: grid; gap: 16px; } @media (min-width: 640px) { .contact .grid2 { grid-template-columns: 1fr 1fr; } } /* ===== Generic buttons ===== */ .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px; border: 1px solid #2a2a2a; background: #141414; } .btn:hover { border-color: #3a3a3a; } /* ===== Footer ===== */ footer { color: var(--muted); text-align: center; padding: 26px 0; border-top: 1px solid #1f1f1f; } </style></head>
 <body>
 <!-- ===== Site Header ===== -->
 <header>
@@ -415,12 +17,19 @@
       <span class="tag">Director of Photography</span>
     </div>
     <nav>
-      <a class="navlink" href="#/contact">contact</a>
+      <button class="filter-toggle" aria-label="Open filters" id="filterToggle">
+        ☰
+      </button>
       <a class="icon" aria-label="Instagram" href="https://www.instagram.com/anilyemelek/" target="_blank" rel="noreferrer noopener" title="Instagram">
       </a>
     </nav>
   </div>
 </header>
+<div class="filter-overlay" id="filterOverlay" aria-hidden="true"></div>
+
+<aside class="filter-drawer" id="filterDrawer" aria-hidden="true">
+  <!-- filtreler -->
+</aside>
 <!-- SPA içerik alanı -->
 <main class="wrap" id="app"></main>
 <!-- Lightbox (fullscreen media) -->
@@ -466,37 +75,37 @@
       }]
     },
     {
-    slug: "44iff",
-    title: "44. İstanbul Film Festivali",
-    subtitle: "Commercial",
-    cover: "assets/projects/44iff/44iff.avif",
-    description: "44. İstanbul Film Festivali",
-    media: [{
-      type: "video",
-      src: "https://player.vimeo.com/video/1087643931"
-    }]
+      slug: "44iff",
+      title: "44. İstanbul Film Festivali",
+      subtitle: "Commercial",
+      cover: "assets/projects/44iff/44iff.avif",
+      description: "44. İstanbul Film Festivali",
+      media: [{
+        type: "video",
+        src: "https://player.vimeo.com/video/1087643931"
+      }]
     },
     {
-    slug: "madrigalsenyoksun",
-    title: "Madrigal feat Göksel - Ne zamandır sendeyim",
-    subtitle: "Music Video",
-    cover: "assets/projects/madrigalgoksel/madrigalgoksel.avif",
-    description: "Madrigal feat Göksel - Ne zamandır sendeyim",
-    media: [{
-      type: "video",
-      src: "https://player.vimeo.com/video/1033811464"
-    }]
+      slug: "madrigalsenyoksun",
+      title: "Madrigal feat Göksel - Ne zamandır sendeyim",
+      subtitle: "Music Video",
+      cover: "assets/projects/madrigalgoksel/madrigalgoksel.avif",
+      description: "Madrigal feat Göksel - Ne zamandır sendeyim",
+      media: [{
+        type: "video",
+        src: "https://player.vimeo.com/video/1033811464"
+      }]
     },
     {
-    slug: "wwf",
-    title: "WWF - Eye Wear Campaign",
-    subtitle: "Commercial",
-    cover: "assets/projects/wwf/wwf.avif",
-    description: "WWF - Eye Wear Campaign",
-    media: [{
-      type: "video",
-      src: "https://player.vimeo.com/video/1035195736"
-    }]
+      slug: "wwf",
+      title: "WWF - Eye Wear Campaign",
+      subtitle: "Commercial",
+      cover: "assets/projects/wwf/wwf.avif",
+      description: "WWF - Eye Wear Campaign",
+      media: [{
+        type: "video",
+        src: "https://player.vimeo.com/video/1035195736"
+      }]
     },
     {
       slug: "istanbulfilmfestivali",
@@ -510,8 +119,8 @@
           src: "https://player.vimeo.com/video/1087642319"
         }
       ]
-      },
-     {
+    },
+    {
       slug: "madrigalsenyadahic",
       title: "Madrigal-Sen ya da hiç",
       subtitle: "Music Video",
@@ -523,8 +132,8 @@
           src: "https://player.vimeo.com/video/1033808394"
         }
       ]
-     },
-     {
+    },
+    {
       slug: "wwfmarketeyewearcampaign",
       title: "wwfmarket-eye wear campaign",
       subtitle: "Commercial",
@@ -536,8 +145,8 @@
           src: "https://player.vimeo.com/video/1033598760"
         }
       ]
-     },
-     {
+    },
+    {
       slug: "cmf1",
       title: "CMF Phone 1",
       subtitle: "Commercial",
@@ -548,17 +157,6 @@
         src: "https://player.vimeo.com/video/1089788027"
       }]
     }
-  //   ,{
-  //   slug: "madrigal",
-  //   title: "Madrigal - Sen Yoksun",
-  //   subtitle: "Music Video",
-  //   cover: "assets/projects/madrigal/madrigal.avif",
-  //   description: "Madrigal - Sen Yoksun",
-  //   media: [{
-  //     type: "video",
-  //     src: "https://player.vimeo.com/video/1033797724"
-  //   }]
-  // }
   ];
   let currentProject = null;
   let currentIndex = 0;
@@ -571,6 +169,8 @@
     });
     return ["All", ...Array.from(map.values())];
   };
+
+  const isContact = location.hash === "#/contact";
 
   function router() {
     const hash = location.hash || "#/";
@@ -591,25 +191,33 @@
   function renderHome() {
     const categories = getCategories();
     const filtersHTML = `
+  <ul class="filter-list" role="menu" aria-label="Main menu">
+    <!-- FILTERS -->
+    ${categories.map(cat => `
+      <li>
+        <button
+          class="filter-item ${location.hash === "#/contact" ? "" : (cat === currentFilter ? "active" : "")}"
+          role="menuitem"
+          data-cat="${cat}"
+        >
+          ${cat}
+        </button>
+      </li>
+    `).join("")}
 
-			<div class="filters" role="tablist" aria-label="Filter projects by category">
-            ${categories
-            .map(
-                    (cat) => `
-
-				<button
-                class="filter-btn ${cat === currentFilter ? "active" : ""}"
-                role="tab"
-                data-cat="${cat}"
-              >
-                ${cat}
-              </button>
-            `
-            )
-            .join("")}
-
-			</div>
-        `;
+        <!-- CONTACT -->
+    <li style="padding: 6px 0px;"></li>
+    <li>
+    <a
+      href="#/contact"
+      class="filter-item ${location.hash === "#/contact" ? "active" : ""}"
+      data-link="contact"
+    >
+      Contact
+    </a>
+    </li>
+  </ul>
+`;
     const filtered = projects.filter((p) => {
       if (currentFilter === "All") return true;
       return (
@@ -646,18 +254,9 @@
 
 			</section>
         `;
-    app.innerHTML = filtersHTML + gridHTML;
-    $$(".filter-btn", app).forEach((btn) => {
-      btn.addEventListener("click", () => {
-        currentFilter = btn.dataset.cat || "All";
-        $$(".filter-btn", app).forEach((b) => b.classList.toggle("active", b === btn));
-        renderHome();
-        // window.scrollTo({
-        //   top: document.querySelector(".filters").getBoundingClientRect().top + window.scrollY - 12,
-        //   behavior: "instant"
-        // });
-      });
-    });
+    const drawer = document.getElementById("filterDrawer");
+    drawer.innerHTML = filtersHTML;
+    app.innerHTML = gridHTML;
   }
 
   function renderProject(slug) {
@@ -859,7 +458,6 @@
       renderLbMedia();
     }
   }
-
   function renderLbMedia() {
     const m = currentProject.media[currentIndex];
     lbImg.style.display = "none";
@@ -894,6 +492,47 @@
   });
   lb.addEventListener("click", (e) => {
     if (e.target === lb) closeLightbox();
+  });
+  const filterToggle = document.getElementById("filterToggle");
+  const filterDrawer = document.getElementById("filterDrawer");
+  const filterOverlay = document.getElementById("filterOverlay");
+
+  function openFilterDrawer() {
+    filterDrawer.classList.add("open");
+    filterOverlay.classList.add("open");
+    filterDrawer.setAttribute("aria-hidden", "false");
+  }
+
+  function closeFilterDrawer() {
+    filterDrawer.classList.remove("open");
+    filterOverlay.classList.remove("open");
+    filterDrawer.setAttribute("aria-hidden", "true");
+  }
+  filterToggle.addEventListener("click", openFilterDrawer);
+  filterOverlay.addEventListener("click", closeFilterDrawer);
+
+  filterDrawer.addEventListener("click", (e) => {
+    const item = e.target.closest(".filter-item");
+    if (!item) return;
+
+    // CONTACT link
+    if (item.dataset.link === "contact") {
+      currentFilter = "All"; // 🔥 filtre state reset
+      closeFilterDrawer();
+      if (location.hash !== "#/contact") {
+        location.hash = "#/contact";
+      }
+      return;
+    }
+    if (item.dataset.cat) {
+      currentFilter = item.dataset.cat || "All";
+      if (location.hash === "#/contact") {
+        location.hash = "#/";
+      } else {
+        renderHome();
+      }
+      closeFilterDrawer();
+    }
   });
 </script>
 </body>
