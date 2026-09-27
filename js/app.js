@@ -102,10 +102,19 @@ function setTitle(t) {
    --------------------------------------------------------- */
 const SLIDE_FALLBACK_MS = 8000; // klip yoksa / oynamazsa kapak süresi
 const SLIDE_WAIT_MS = 6000;     // klip bu sürede başlamazsa kapağa geç
+// Dikey telefonda videolar alt alta, kaydırmalı (referans gibi); diğer ekranlarda tek video + sekmeler
+const HOME_SCROLL_MQ = "(max-width: 767px)";
 
 function renderHome() {
   setTitle("");
   const items = SITE.home.map(bySlug).filter(Boolean);
+
+  const metaHTML = (p) => `
+    <span class="home-tab-title" lang="tr">${esc(p.title)}</span>
+    <span class="home-tab-meta">
+      <span>${esc(p.director || p.category)}</span>
+      <span>${esc(p.production || "")}</span>
+    </span>`;
 
   app.innerHTML = `
     <section class="home page" aria-label="Featured works">
@@ -114,26 +123,43 @@ function renderHome() {
           <div class="home-slide">
             ${p.clip ? `<video class="home-video" src="${esc(p.clip)}" muted playsinline preload="none" disablepictureinpicture></video>` : ""}
             <img class="home-poster" src="${esc(p.clip ? p.clip.replace(/\.mp4$/, ".jpg") : coverLarge(p))}" alt="" />
+            <a class="home-caption" href="#/work/${p.slug}">${metaHTML(p)}</a>
           </div>`).join("")}
       </div>
       <div class="home-tabs" style="--n:${items.length}">
         ${items.map((p) => `
           <a class="home-tab" href="#/work/${p.slug}">
-            <span class="home-tab-title" lang="tr">${esc(p.title)}</span>
-            <span class="home-tab-meta">
-              <span>${esc(p.director || p.category)}</span>
-              <span>${esc(p.production || "")}</span>
-            </span>
+            ${metaHTML(p)}
             <span class="home-tab-bar"><i></i></span>
           </a>`).join("")}
       </div>
     </section>`;
 
+  const home = $(".home");
   const slides = $$(".home-slide");
   const tabs = $$(".home-tab");
-  const n = slides.length;
-  if (!n) return;
+  if (!slides.length) return;
 
+  const mq = matchMedia(HOME_SCROLL_MQ);
+  let stop = null;
+  const setup = () => {
+    if (stop) stop();
+    stop = mq.matches ? startScrollMode(home, slides) : startTabMode(slides, tabs);
+  };
+  setup();
+  mq.addEventListener("change", setup);
+
+  cleanup = () => {
+    mq.removeEventListener("change", setup);
+    if (stop) stop();
+    slides.forEach((s) => { const v = s.querySelector("video"); if (v) { v.pause(); v.removeAttribute("src"); v.load(); } });
+  };
+}
+
+// Masaüstü: tek tam ekran video, altta sekmeler, süre bitince sıradakine geçer
+function startTabMode(slides, tabs) {
+  const n = slides.length;
+  const events = new AbortController();
   let cur = -1;
   let raf = 0;
   let startedAt = 0;
@@ -183,7 +209,7 @@ function renderHome() {
 
   slides.forEach((s) => {
     const v = s.querySelector("video");
-    if (v) v.addEventListener("error", () => { if (slides[cur] === s) useFallback(); });
+    if (v) v.addEventListener("error", () => { if (slides[cur] === s) useFallback(); }, { signal: events.signal });
   });
 
   function tick(now) {
@@ -205,15 +231,51 @@ function renderHome() {
 
   // Masaüstünde sekmenin üstüne gelince o işe geç
   if (matchMedia("(hover: hover)").matches) {
-    tabs.forEach((t, k) => t.addEventListener("mouseenter", () => go(k)));
+    tabs.forEach((t, k) => t.addEventListener("mouseenter", () => go(k), { signal: events.signal }));
   }
 
   go(0);
   raf = requestAnimationFrame(tick);
 
-  cleanup = () => {
+  return () => {
     cancelAnimationFrame(raf);
-    slides.forEach((s) => { const v = s.querySelector("video"); if (v) { v.pause(); v.removeAttribute("src"); v.load(); } });
+    events.abort();
+    slides.forEach((s) => { s.classList.remove("active"); const v = s.querySelector("video"); if (v) v.pause(); });
+    tabs.forEach((t, k) => { t.classList.remove("active"); setBar(k, 0); });
+  };
+}
+
+// Dikey telefon: videolar alt alta tam ekran, sayfa sayfa kayar; sadece ekrandaki video oynar
+function startScrollMode(home, slides) {
+  home.classList.add("home-scroll");
+  document.documentElement.classList.add("home-snap");
+  const vids = slides.map((s) => s.querySelector("video"));
+  vids.forEach((v) => { if (v) v.loop = true; });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      const i = slides.indexOf(e.target);
+      const v = vids[i];
+      if (!v) return;
+      if (e.isIntersecting) {
+        v.muted = true;
+        v.preload = "auto";
+        v.play().then(() => v.classList.add("ready")).catch(() => {});
+        // sıradaki klibi önceden yükle
+        const nv = vids[i + 1];
+        if (nv && nv.preload === "none") { nv.preload = "auto"; nv.load(); }
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+  slides.forEach((s) => io.observe(s));
+
+  return () => {
+    io.disconnect();
+    vids.forEach((v) => { if (v) { v.pause(); v.loop = false; } });
+    home.classList.remove("home-scroll");
+    document.documentElement.classList.remove("home-snap");
   };
 }
 
