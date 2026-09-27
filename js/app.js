@@ -48,6 +48,7 @@ let cleanup = null;
 
 function router() {
   if (cleanup) { cleanup(); cleanup = null; }
+  resetCardPreviews();
   closeMenu();
   closeLightbox();
 
@@ -295,28 +296,62 @@ function cardHTML(p, i = 0) {
     </a>`;
 }
 
-// Klibi olan kartlarda hover ile video önizleme
+// Klibi olan kartlarda video önizleme:
+// masaüstünde fareyle üstüne gelince, dokunmatik cihazlarda kart ekrana gelince oynar
+let previewObservers = [];
+
+function resetCardPreviews() {
+  previewObservers.forEach((o) => o.disconnect());
+  previewObservers = [];
+}
+
+function cardVideo(card) {
+  if (card._preview) return card._preview;
+  const v = document.createElement("video");
+  v.className = "card-media";
+  v.muted = true;
+  v.loop = true;
+  v.playsInline = true;
+  v.setAttribute("muted", "");
+  v.setAttribute("playsinline", "");
+  v.preload = "auto";
+  v.src = card.dataset.clip;
+  // görselin tam üstüne oturur (mobilde altındaki yazıyı örtmez)
+  v.style.cssText = "position:absolute;left:0;top:0;opacity:0;transition:opacity .4s";
+  v.addEventListener("playing", () => (v.style.opacity = 1));
+  card.insertBefore(v, card.querySelector(".card-info"));
+  card._preview = v;
+  return v;
+}
+
+function stopPreview(card) {
+  const v = card._preview;
+  if (!v) return;
+  v.pause();
+  v.style.opacity = 0;
+}
+
 function bindCardPreviews(root) {
-  if (!matchMedia("(hover: hover)").matches) return;
-  $$(".card[data-clip]", root).forEach((card) => {
-    let v = null;
-    card.addEventListener("mouseenter", () => {
-      if (!v) {
-        v = document.createElement("video");
-        v.className = "card-media";
-        Object.assign(v, { src: card.dataset.clip, muted: true, loop: true, playsInline: true });
-        v.style.cssText = "position:absolute;inset:0;height:100%;opacity:0;transition:opacity .4s";
-        v.addEventListener("playing", () => (v.style.opacity = 1));
-        card.insertBefore(v, card.querySelector(".card-info"));
-      }
-      v.play().catch(() => {});
+  const cards = $$(".card[data-clip]", root);
+  if (!cards.length) return;
+
+  if (matchMedia("(hover: hover)").matches) {
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => cardVideo(card).play().catch(() => {}));
+      card.addEventListener("mouseleave", () => stopPreview(card));
     });
-    card.addEventListener("mouseleave", () => {
-      if (!v) return;
-      v.pause();
-      v.style.opacity = 0;
+    return;
+  }
+
+  // Dokunmatik: kartın en az %60'ı görünürken oynat, çıkınca durdur; video ancak ekrana gelince yüklenir
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) cardVideo(e.target).play().catch(() => {});
+      else stopPreview(e.target);
     });
-  });
+  }, { threshold: 0.6 });
+  cards.forEach((c) => io.observe(c));
+  previewObservers.push(io);
 }
 
 function renderWork() {
@@ -338,6 +373,7 @@ function renderWork() {
     const list = PROJECTS.filter((p) => p.category === currentCat);
     grid.className = list.length ? "grid" : "empty";
     grid.innerHTML = list.length ? list.map(cardHTML).join("") : "Coming soon.";
+    resetCardPreviews();
     bindCardPreviews(grid);
   };
   redraw();
