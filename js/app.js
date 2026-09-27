@@ -35,8 +35,8 @@ const logoHTML = () => `
   <a href="#/" class="logo" aria-label="${esc(SITE.name)}">
     <span class="logo-name">ANIL<br />YEMELEK</span>
     <span class="logo-tag">DIRECTOR OF PHOTOGRAPHY</span>
-    <i class="logo-dot" aria-hidden="true"></i>
-    <i class="logo-corner" aria-hidden="true"></i>
+<!--    <i class="logo-dot" aria-hidden="true"></i>-->
+<!--    <i class="logo-corner" aria-hidden="true"></i>-->
   </a>`;
 
 const telHref = (t) => "tel:" + t.replace(/[^\d+]/g, "");
@@ -71,7 +71,27 @@ function router() {
   else if (page === "about") renderAbout();
   else if (page === "contact") renderContact();
   else renderNotFound();
+
+  fitGiants();
 }
+
+// Dev başlıklar (WORK, CONTACT, isim) ekrana sığmıyorsa yazıyı küçült — asla yana taşmasın
+function fitGiants() {
+  $$(".giant").forEach((el) => {
+    el.style.fontSize = "";
+    const cs = getComputedStyle(el);
+    const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+    const avail = el.clientWidth - pad;
+    const need = el.scrollWidth - pad;
+    if (need > avail) el.style.fontSize = `${(parseFloat(cs.fontSize) * avail) / need * 0.98}px`;
+  });
+}
+let fitRaf = 0;
+window.addEventListener("resize", () => {
+  cancelAnimationFrame(fitRaf);
+  fitRaf = requestAnimationFrame(fitGiants);
+});
+if (document.fonts) document.fonts.ready.then(fitGiants);
 
 function setTitle(t) {
   document.title = t ? `${t} | ${SITE.name}` : `${SITE.name} | ${SITE.role}`;
@@ -206,7 +226,10 @@ function cardHTML(p, i = 0) {
   return `
     <a class="card" href="#/work/${p.slug}" style="animation-delay:${Math.min(i, 12) * 40}ms" ${p.clip ? `data-clip="${esc(p.clip)}"` : ""}>
       <img class="card-media" loading="lazy" src="${esc(p.cover)}" alt="${esc(p.title)}" />
-      <span class="card-info"><span lang="tr">${esc(p.title)}</span><span class="label">${esc(p.category)}</span></span>
+      <span class="card-info">
+        <span class="card-title" lang="tr">${esc(p.title)}</span>
+        <span class="card-meta"><span>${esc(p.director || p.category)}</span><span>${esc(p.production || "")}</span></span>
+      </span>
     </a>`;
 }
 
@@ -423,13 +446,13 @@ const menuToggle = $("#menuToggle");
 
 function openMenu() {
   document.body.classList.add("menu-open");
-  menuToggle.textContent = "Close";
+  menuToggle.setAttribute("aria-label", "Close menu");
   menuToggle.setAttribute("aria-expanded", "true");
   $("#mobileMenu").setAttribute("aria-hidden", "false");
 }
 function closeMenu() {
   document.body.classList.remove("menu-open");
-  menuToggle.textContent = "Menu";
+  menuToggle.setAttribute("aria-label", "Open menu");
   menuToggle.setAttribute("aria-expanded", "false");
   $("#mobileMenu").setAttribute("aria-hidden", "true");
 }

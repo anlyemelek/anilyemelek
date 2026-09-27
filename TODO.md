@@ -24,4 +24,4 @@ Can "başlayalım" diyene kadar bu maddeler üzerinde çalışılmaz.
 
 - [ ] Gerçek iPhone / Android cihazda test (video otomatik oynatma, mobil menü)
 - [x] `redesign` dalına commit + push (469c7d4)
-- [ ] Onayla `main` dalına birleştir ve canlıya al
+- [x] `main` dalına birleştirildi ve canlıya alındı (e68311e), Can canlıyı onayladı
