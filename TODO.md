@@ -23,5 +23,5 @@ Can "başlayalım" diyene kadar bu maddeler üzerinde çalışılmaz.
 ## Test ve yayın
 
 - [ ] Gerçek iPhone / Android cihazda test (video otomatik oynatma, mobil menü)
-- [ ] `redesign` dalına commit
+- [x] `redesign` dalına commit + push (469c7d4)
 - [ ] Onayla `main` dalına birleştir ve canlıya al
