@@ -113,8 +113,7 @@ function renderHome() {
   const metaHTML = (p) => `
     <span class="home-tab-title" lang="tr">${esc(p.title)}</span>
     <span class="home-tab-meta">
-      <span>${esc(p.director || p.category)}</span>
-      <span>${esc(p.production || "")}</span>
+      <span>${esc(p.category)}</span>
     </span>`;
 
   app.innerHTML = `
@@ -398,8 +397,11 @@ function renderProject(slug) {
   const block = (label, value) =>
     value ? `<div class="meta-block"><div class="label">${esc(label)}</div><div lang="tr">${esc(value)}</div></div>` : "";
 
-  const credits = (p.credits || []).length
-    ? `<div class="meta-block"><div class="label">Credits</div>${p.credits.map((c) => `<p>${esc(c)}</p>`).join("")}</div>`
+  // Credits: Director / Production / Agency + varsa ek satırlar (credits dizisi)
+  const creditLines = [["Director", p.director], ["Production", p.production], ["Producer", p.producer], ["Agency", p.agency], ...(p.credits || []).map((c) => [null, c])]
+    .filter(([, v]) => v);
+  const credits = creditLines.length
+    ? `<div class="meta-block"><div class="label">Credits</div>${creditLines.map(([role, v]) => `<p>${role ? `<span class="credit-role">${esc(role)}:</span> ` : ""}<span lang="tr">${esc(v)}</span></p>`).join("")}</div>`
     : "";
 
   const stills = p.stills || [];
@@ -413,7 +415,7 @@ function renderProject(slug) {
         <div class="marquee" aria-hidden="true"><div class="marquee-track">${marqueeText}${marqueeText}</div></div>
         <div class="meta">
           <div class="meta-col">${block("Category", p.category)}${block("Year", p.year)}</div>
-          <div class="meta-col">${block("Director", p.director)}${block("Production", p.production)}${credits}</div>
+          <div class="meta-col">${credits}</div>
           <div class="meta-col">
             <div class="meta-block">
               <h1 class="label" lang="tr">${esc(p.title)}</h1>

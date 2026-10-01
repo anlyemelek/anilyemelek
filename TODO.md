@@ -9,4 +9,3 @@ Can "başlayalım" diyene kadar bu maddeler üzerinde çalışılmaz.
 - [ ] 3. About sayfası: biyografi, diller, ödüller, CV linki (içerik hazırlanıyor)
 - [ ] 4. Video altına still görseller: her iş için görseller gelecek → `assets/projects/<slug>/` klasörüne konup `stills` alanına eklenecek
 - [ ] 5. Proje bilgileri: her iş için yönetmen, yapım şirketi, yıl, credits. Boş alan görünmez; yönetmen/yapım girilince ana sayfada ve Work kartlarında da görünür
-- [ ] 6. İş isimlerini "MARKA - Başlık" biçimine getir (örn. "hepsiburada/anneler günü" → "HEPSIBURADA - Anneler Günü")
