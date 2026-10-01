@@ -342,5 +342,48 @@ const PROJECTS = [
     year: "",
     credits: [],
     stills: []
+  },
+  {
+    slug: "periferi",
+    title: "Periferi: Gündelik Devinimler Zinciri",
+    category: "Narrative",
+    cover: "assets/projects/periferi/poster.jpg",
+    coverFit: "contain", // dikey afiş: kartta kırpılmadan tam görünür
+    vimeo: "",
+    description: "",
+    director: "Furkan Arslantaş",
+    production: "",
+    producer: "",
+    agency: "",
+    year: "",
+    credits: [
+      { role: "Cast", name: "Erdem Kaynarca, Deniz Bakacak, Murat Kapı, Onur Gürçay, Asena Girişken, Meriç Özkaya, Levent Can" },
+      { role: "Producers", name: "Furkan Arslantaş, Fatih Dağlı, Doğa Güneykaya, Oğuz Hidayetoğlu, Erdem Kaynarca, Can Ulkay" },
+      { role: "Cinematographer", name: "Anıl Yemelek" },
+      { role: "Composer", name: "Agustin Gulias" },
+      { role: "Editor", name: "Cemre Açıkgöz" },
+      { role: "Colorist", name: "Oğuz Birgölge" }
+    ],
+    // Kaydırmalı galeri (video yerine); her görselin telefon sürümü aynı adla "-m.jpg"
+    gallery: [
+      "assets/projects/periferi/still-13.jpg",
+      "assets/projects/periferi/still-03.jpg",
+      "assets/projects/periferi/still-04.jpg",
+      "assets/projects/periferi/still-07.jpg",
+      "assets/projects/periferi/still-09.jpg",
+      "assets/projects/periferi/still-01.jpg",
+      "assets/projects/periferi/still-05.jpg",
+      "assets/projects/periferi/still-06.jpg",
+      "assets/projects/periferi/still-08.jpg",
+      "assets/projects/periferi/still-10.jpg",
+      "assets/projects/periferi/still-11.jpg",
+      "assets/projects/periferi/still-12.jpg",
+      "assets/projects/periferi/still-14.jpg",
+      "assets/projects/periferi/still-15.jpg",
+      "assets/projects/periferi/still-18.jpg",
+      "assets/projects/periferi/still-19.jpg",
+      "assets/projects/periferi/still-20.jpg"
+    ],
+    stills: []
   }
 ];

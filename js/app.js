@@ -287,7 +287,7 @@ let currentCat = SITE.categories[0];
 function cardHTML(p, i = 0) {
   return `
     <a class="card" href="#/work/${p.slug}" style="animation-delay:${Math.min(i, 12) * 40}ms" ${p.clip ? `data-clip="${esc(p.clip)}"` : ""}>
-      <img class="card-media" loading="lazy" src="${esc(p.cover)}" alt="${esc(p.title)}" />
+      <img class="card-media${p.coverFit === "contain" ? " is-contain" : ""}" loading="lazy" src="${esc(p.cover)}" alt="${esc(p.title)}" />
       <span class="card-info">
         <span class="card-title" lang="tr">${esc(p.title)}</span>
         <span class="card-meta"><span>${esc(p.director || p.category)}</span><span>${esc(p.production || "")}</span></span>
@@ -397,8 +397,8 @@ function renderProject(slug) {
   const block = (label, value) =>
     value ? `<div class="meta-block"><div class="label">${esc(label)}</div><div lang="tr">${esc(value)}</div></div>` : "";
 
-  // Credits: Director / Production / Agency + varsa ek satırlar (credits dizisi)
-  const creditLines = [["Director", p.director], ["Production", p.production], ["Producer", p.producer], ["Agency", p.agency], ...(p.credits || []).map((c) => [null, c])]
+  // Credits: Director / Production / Producer / Agency + ek satırlar (credits: { role, name } ya da düz yazı)
+  const creditLines = [["Director", p.director], ["Production", p.production], ["Producer", p.producer], ["Agency", p.agency], ...(p.credits || []).map((c) => (typeof c === "string" ? [null, c] : [c.role, c.name]))]
     .filter(([, v]) => v);
   const credits = creditLines.length
     ? `<div class="meta-block"><div class="label">Credits</div>${creditLines.map(([role, v]) => `<p>${role ? `<span class="credit-role">${esc(role)}:</span> ` : ""}<span lang="tr">${esc(v)}</span></p>`).join("")}</div>`
@@ -415,7 +415,7 @@ function renderProject(slug) {
         <div class="marquee" aria-hidden="true"><div class="marquee-track">${marqueeText}${marqueeText}</div></div>
         <div class="meta">
           <div class="meta-col">${block("Category", p.category)}${block("Year", p.year)}</div>
-          <div class="meta-col">${credits}</div>
+          <div class="meta-col${creditLines.length > 4 ? " is-long" : ""}">${credits}</div>
           <div class="meta-col">
             <div class="meta-block">
               <h1 class="label" lang="tr">${esc(p.title)}</h1>
@@ -427,6 +427,8 @@ function renderProject(slug) {
 
       ${p.vimeo ? `<div class="player"><iframe src="${vimeoPlayer(p.vimeo)}" title="${esc(p.title)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>` : ""}
 
+      ${(p.gallery || []).length ? galleryHTML(p) : ""}
+
       ${stills.length ? `<section class="stills">${stills.map((s, i) => `<button class="still" data-i="${i}" aria-label="Still ${i + 1}"><img loading="lazy" src="${esc(s)}" alt="" /></button>`).join("")}</section>` : ""}
 
       <section class="others">
@@ -437,6 +439,117 @@ function renderProject(slug) {
 
   bindCardPreviews(app);
   $$(".still").forEach((b) => b.addEventListener("click", () => openLightbox(stills, Number(b.dataset.i))));
+  const gal = $(".gallery", app);
+  if (gal) bindGallery(gal, p.gallery);
+}
+
+/* ---------------------------------------------------------
+   Galeri — kaydırmalı kareler (romainlacourbas.com tarzı)
+   Kareler yana kayar, görsel çerçevenin içinde ters yöne hafif kayar (parallax).
+   Oklar, sürükleme/kaydırma, klavye ve alttaki noktalarla gezilir; tıklayınca lightbox açılır.
+   --------------------------------------------------------- */
+const GALLERY_PARALLAX = 0.3;   // komşu karede görselin kayma oranı
+const CHEVRON_PATH = "M5.275 29.46a1.61 1.61 0 0 0 1.456 1.077c1.018 0 1.772-.737 1.772-1.737 0-.526-.277-1.186-.449-1.62l-4.68-11.912L8.05 3.363c.172-.442.45-1.116.45-1.625A1.7 1.7 0 0 0 6.728.002a1.6 1.6 0 0 0-1.456 1.09L.675 12.774c-.301.775-.677 1.744-.677 2.495 0 .754.376 1.705.677 2.498L5.272 29.46Z";
+const mobileSrc = (src) => src.replace(/\.jpg$/, "-m.jpg");
+
+function galleryHTML(p) {
+  const chevron = (dir) => `
+    <button class="gallery-chevron gallery-${dir}" aria-label="${dir === "prev" ? "Previous" : "Next"} image">
+      <svg width="9" height="31" viewBox="0 0 9 31" fill="currentColor" aria-hidden="true"${dir === "next" ? ' style="transform:scaleX(-1)"' : ""}><path d="${CHEVRON_PATH}"/></svg>
+    </button>`;
+  return `
+    <section class="gallery" tabindex="0" aria-roledescription="carousel" aria-label="${esc(p.title)} gallery">
+      <div class="gallery-track">
+        ${p.gallery.map((src, i) => `
+          <div class="gallery-slide" aria-label="${i + 1} / ${p.gallery.length}">
+            <img class="gallery-img" src="${esc(src)}" srcset="${esc(mobileSrc(src))} 1080w, ${esc(src)} 1920w" sizes="100vw"
+              alt="" draggable="false" decoding="async" ${i ? 'fetchpriority="low"' : ""} />
+          </div>`).join("")}
+      </div>
+      ${chevron("prev")}${chevron("next")}
+      <div class="gallery-dots"><div class="gallery-dots-track">
+        ${p.gallery.map((_, i) => `<button class="gallery-dot" aria-label="Go to image ${i + 1}"></button>`).join("")}
+      </div></div>
+    </section>`;
+}
+
+function bindGallery(root, list) {
+  const track = $(".gallery-track", root);
+  const imgs = $$(".gallery-img", root);
+  const dots = $$(".gallery-dot", root);
+  const dotsTrack = $(".gallery-dots-track", root);
+  const prev = $(".gallery-prev", root);
+  const next = $(".gallery-next", root);
+  const last = list.length - 1;
+  let index = 0;
+
+  // pos: kesirli konum (sürüklerken 2.4 gibi); animate: yumuşak geçiş
+  const render = (pos, animate) => {
+    root.classList.toggle("is-dragging", !animate);
+    track.style.transform = `translate3d(${-pos * 100}%, 0, 0)`;
+    imgs.forEach((img, i) => {
+      const d = Math.max(-1, Math.min(1, i - pos));
+      img.style.transform = `translate3d(${-d * GALLERY_PARALLAX * 100}%, 0, 0)`;
+    });
+  };
+
+  const go = (i) => {
+    index = Math.max(0, Math.min(last, i));
+    render(index, true);
+    prev.classList.toggle("is-off", index === 0);
+    next.classList.toggle("is-off", index === last);
+    dots.forEach((d, k) => d.classList.toggle("active", k === index));
+    // Noktalar dar pencereye sığmazsa aktif nokta ortada kalacak şekilde kaydır
+    const win = dotsTrack.parentElement.clientWidth;
+    const a = dots[index];
+    const max = Math.max(0, dotsTrack.scrollWidth - win);
+    const x = Math.max(0, Math.min(max, a.offsetLeft + 8 - win / 2));
+    dotsTrack.style.transform = `translateX(${-x}px)`;
+  };
+
+  prev.addEventListener("click", () => go(index - 1));
+  next.addEventListener("click", () => go(index + 1));
+  dots.forEach((d, k) => d.addEventListener("click", () => go(k)));
+  root.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); go(index - 1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); go(index + 1); }
+  });
+
+  // Sürükleme / parmakla kaydırma (dikey sayfa kaydırması bozulmaz: touch-action: pan-y)
+  let startX = 0, startT = 0, dx = 0, dragging = false, moved = false;
+  track.addEventListener("pointerdown", (e) => {
+    if (e.button !== 0) return;
+    dragging = true; moved = false; dx = 0;
+    startX = e.clientX; startT = performance.now();
+    track.setPointerCapture(e.pointerId);
+  });
+  track.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    dx = e.clientX - startX;
+    if (Math.abs(dx) > 6) moved = true;
+    if (!moved) return;
+    let pos = index - dx / root.clientWidth;
+    if (pos < 0 || pos > last) pos = index - (dx / root.clientWidth) * 0.3; // uçlarda direnç
+    render(pos, false);
+  });
+  const end = () => {
+    if (!dragging) return;
+    dragging = false;
+    if (!moved) return;
+    const w = root.clientWidth;
+    const fast = Math.abs(dx) / (performance.now() - startT) > 0.5; // hızlı fiske
+    if (Math.abs(dx) > w * 0.15 || (fast && Math.abs(dx) > 30)) go(index + (dx < 0 ? 1 : -1));
+    else go(index);
+  };
+  track.addEventListener("pointerup", end);
+  track.addEventListener("pointercancel", end);
+  // Sürükleme değil de tıklamaysa büyük görüntüle
+  track.addEventListener("click", () => { if (!moved) openLightbox(list, index); });
+
+  // Sayfadan çıkınca dinleyici kendini kaldırır
+  const onResize = () => (root.isConnected ? go(index) : window.removeEventListener("resize", onResize));
+  window.addEventListener("resize", onResize, { passive: true });
+  go(0);
 }
 
 /* ---------------------------------------------------------
