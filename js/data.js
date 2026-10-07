@@ -27,7 +27,7 @@ const SITE = {
   categories: ["Commercial", "Narrative", "Music Video"],
 
   // Ana sayfada arka planda dönen işler (slug)
-  home: ["shelltts30", "hepsiburadaannelergunu", "hokus", "sekerbank"],
+  home: ["shelltts30", "hepsiburadaannelergunu", "hokus", "periferi"],
 
   // About sayfası — boş alanlar gösterilmez
   about: {
@@ -373,6 +373,7 @@ const PROJECTS = [
     cover: "assets/projects/periferi/poster.jpg",
     coverFit: "contain", // dikey afiş: kartta kırpılmadan tam görünür
     vimeo: "",
+    clip: "assets/clips/periferi.mp4", // galeri karelerinden hazırlanan klip
     description: "",
     director: "Furkan Arslantaş",
     production: "",
