@@ -408,5 +408,55 @@ const PROJECTS = [
       "assets/projects/periferi/still-20.jpg"
     ],
     stills: []
+  },
+  {
+    slug: "dunyaseninbildigingibidegil",
+    title: "Dünya Senin Bildiğin Gibi Değil",
+    category: "Narrative",
+    cover: "assets/projects/dunyaseninbildigingibidegil/poster.jpg",
+    coverFit: "contain", // dikey afiş: kartta kırpılmadan tam görünür
+    vimeo: "",
+    description: "",
+    director: "Samet Karaman",
+    production: "ODO Yapım",
+    producer: "",
+    agency: "",
+    year: "",
+    credits: [
+      { role: "Writer", name: "Bilgesu Kasapoğlu Akçardak" },
+      { role: "Cast", name: "Demet Akbağ, Bihter Dinçel, Fatih Al, Onur Gürçay, Erdem Kaynarca, İbrahim Şahin, Alp Özbayram" },
+      { role: "Producers", name: "Ege Akbıyık, Cenk Arda Ekşioğlu, Erdem Kaynarca, Doğa Güneykaya, Merih Ermakastar, Berat Gülayan, Fatih Dağlı" },
+      { role: "Cinematographer", name: "Anıl Yemelek" },
+      { role: "Composer", name: "Cenk Erdoğan" },
+      { role: "Editor", name: "Cemre Açıkgöz" },
+      { role: "Colorist", name: "Sırrı Ali Şölen" },
+      { role: "Art Director", name: "Yeliz Yavuz" },
+      { role: "Costume Designer", name: "Damla Zavur" },
+      { role: "Makeup & Hair", name: "Emin Aksu" }
+    ],
+    // Kaydırmalı galeri (16:9'a kırpılmış kareler); telefon sürümü "-m.jpg"
+    gallery: [
+      "assets/projects/dunyaseninbildigingibidegil/still-01.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-07.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-05.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-10.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-19.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-02.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-03.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-04.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-06.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-08.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-09.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-11.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-12.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-13.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-14.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-15.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-16.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-17.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-18.jpg",
+      "assets/projects/dunyaseninbildigingibidegil/still-20.jpg"
+    ],
+    stills: []
   }
 ];
