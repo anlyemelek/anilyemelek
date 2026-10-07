@@ -568,6 +568,7 @@ function renderAbout() {
       <div class="about-body">
         <div class="about-bio">
           ${a.bio ? a.bio.split(/\n\s*\n/).map((t) => `<p>${esc(t)}</p>`).join("") : `<p class="label">Biography coming soon.</p>`}
+          ${a.closing ? `<p class="about-closing"><a class="u" href="#/contact">${esc(a.closing)}</a></p>` : ""}
           ${a.cv ? `<p class="label" style="margin-top:2em">About</p><p>Download CV [<a class="u" href="${esc(a.cv)}" target="_blank" rel="noopener">here</a>]</p>` : ""}
         </div>
         ${(a.languages || []).length ? `

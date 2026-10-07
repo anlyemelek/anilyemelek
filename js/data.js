@@ -24,14 +24,21 @@ const SITE = {
   vimeo: "https://vimeo.com/anilyemelek",
 
   // Work sayfasındaki filtreler (sırasıyla)
-  categories: ["Commercial", "Music Video", "Narrative"],
+  categories: ["Commercial", "Narrative", "Music Video"],
 
   // Ana sayfada arka planda dönen işler (slug)
-  home: ["hokus", "sekerbank", "hepsiburadaannelergunu", "madrigalsenyadahic"],
+  home: ["shelltts30", "hepsiburadaannelergunu", "hokus", "sekerbank"],
 
   // About sayfası — boş alanlar gösterilmez
   about: {
-    bio: "",
+    bio: `Anıl Yemelek is a cinematographer working in commercials, music videos and narrative film.
+
+His relationship with the camera began on set — learning the craft within the camera department, understanding movement, optics, light and the precision behind every frame. Over time, that technical foundation evolved into a more personal visual language, leading him to work as a Director of Photography.
+
+He believes every frame should have a reason. Light, lenses and movement all shape how a story feels, so he works closely with directors to find the right look for each project and builds it with patience and care.
+
+He’s happiest when the image feels natural, like it could never have looked any other way.`,
+    closing: "Let’s make something worth watching.", // Contact sayfasına bağlanır
     cv: "",
     languages: [],
     awards: [] // { title: "", award: "", year: "" }
@@ -39,6 +46,22 @@ const SITE = {
 };
 
 const PROJECTS = [
+  {
+    slug: "shelltts30",
+    title: "SHELL - TTS 30 Yaşında",
+    category: "Commercial",
+    cover: "https://vumbnail.com/1233627297.jpg",
+    vimeo: "1233627297",
+    clip: "assets/clips/shelltts30.mp4",
+    description: "",
+    director: "Yunus Emre Boylu",
+    production: "Klik Film",
+    producer: "",
+    agency: "Blab x Concept Istanbul",
+    year: "",
+    credits: [],
+    stills: []
+  },
   {
     slug: "sekerbank",
     title: "ŞEKERBANK",
